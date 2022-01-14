@@ -464,7 +464,7 @@ class Kamodo(UserDict):
         self.unit_registry[func_units] = get_unit(output_units)
         return lhs
 
-    def register_signature(self, symbol, units, lhs_expr, rhs_expr):
+    def register_signature(self, symbol, units, lhs_expr, rhs_expr, arg_units):
         # if isinstance(units, str):
         unit_str = units
         if self.verbose:
@@ -476,6 +476,7 @@ class Kamodo(UserDict):
             lhs=lhs_expr,
             rhs=rhs_expr,
             # update = getattr(self[lhs_expr],'update', None),
+            arg_units=arg_units
         )
 
     def register_function(self, func, lhs_symbol, lhs_expr, lhs_units):
@@ -525,7 +526,7 @@ class Kamodo(UserDict):
         else:
             self.unit_registry[lhs_symbol] = get_unit(units)
 
-        self.register_signature(lhs_symbol, units, lhs_expr, rhs)
+        self.register_signature(lhs_symbol, units, lhs_expr, rhs, arg_units)
         try:
             func._repr_latex_ = lambda: self.func_latex(str(type(lhs_symbol)),
                                                         mode='inline')
@@ -685,7 +686,7 @@ class Kamodo(UserDict):
             meta = dict(units=units, arg_units=arg_units)
             func.meta = meta
             func.data = None
-            self.register_signature(symbol, units, lhs_expr, rhs_expr)
+            self.register_signature(symbol, units, lhs_expr, rhs_expr, arg_units)
             func._repr_latex_ = lambda: self.func_latex(str(type(symbol)),
                                                         mode='inline')
             super(Kamodo, self).__setitem__(symbol, func)
@@ -1018,6 +1019,14 @@ class Kamodo(UserDict):
                      t=40,
                      pad=0),
                  ))
+        try:
+            args_unit = signature['arg_units']
+            x_axis_unit = [args_unit[i][0] for i in sorted(args_unit.keys())][0]
+            last_index = layout.xaxis.title.text.rindex('$')
+            new_xaxis_label =layout.xaxis.title.text[:last_index] + f'[{x_axis_unit}]' + layout.xaxis.title.text[last_index:]
+            layout['xaxis']['title']['text'] = new_xaxis_label
+        except:
+            pass
 
         fig['data'] = traces
         fig['layout'] = layout
@@ -1071,7 +1080,6 @@ class KamodoAPI(Kamodo):
         self._data = {}
 
         self.__doc__ = requests.get('{}/doc'.format(self._url_path)).text
-
         for k, v in self._kdata.items():
             # get defaults for this func
             default_path = '{}/{}/defaults'.format(self._url_path, k)
