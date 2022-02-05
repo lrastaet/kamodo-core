@@ -205,6 +205,187 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>plot_type</th>
+      <th>function</th>
+    </tr>
+    <tr>
+      <th>out_shape</th>
+      <th>arg_shapes</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th>(1,)</th>
+      <th>((N, M), (N, M), (N, M))</th>
+      <td>3d-parametric</td>
+      <td>kamodo.plotting.surface</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">(N,)</th>
+      <th>((N,),)</th>
+      <td>1d-line</td>
+      <td>kamodo.plotting.line_plot</td>
+    </tr>
+    <tr>
+      <th>((N,), (N,))</th>
+      <td>2d-line-scalar</td>
+      <td>kamodo.plotting.line_plot</td>
+    </tr>
+    <tr>
+      <th>((N,), (N,), (N,))</th>
+      <td>3d-line-scalar</td>
+      <td>kamodo.plotting.line_plot</td>
+    </tr>
+    <tr>
+      <th>((N, 3),)</th>
+      <td>3d scatter</td>
+      <td>kamodo.plotting.scatter_plot</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">(N, 2)</th>
+      <th>((N,),)</th>
+      <td>2d-line</td>
+      <td>kamodo.plotting.line_plot</td>
+    </tr>
+    <tr>
+      <th>((N, 2),)</th>
+      <td>2d-vector</td>
+      <td>kamodo.plotting.vector_plot</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">(N, 3)</th>
+      <th>((N,),)</th>
+      <td>3d-line</td>
+      <td>kamodo.plotting.line_plot</td>
+    </tr>
+    <tr>
+      <th>((N, 3),)</th>
+      <td>3d-vector</td>
+      <td>kamodo.plotting.vector_plot</td>
+    </tr>
+    <tr>
+      <th>((M,), (M,), (M,))</th>
+      <td>3d-tri-surface</td>
+      <td>kamodo.plotting.tri_surface_plot</td>
+    </tr>
+    <tr>
+      <th>(N, N)</th>
+      <th>((N,), (N,))</th>
+      <td>2d-contour</td>
+      <td>kamodo.plotting.contour_plot</td>
+    </tr>
+    <tr>
+      <th rowspan="7" valign="top">(N, M)</th>
+      <th>((N,), (M,))</th>
+      <td>2d-contour</td>
+      <td>kamodo.plotting.contour_plot</td>
+    </tr>
+    <tr>
+      <th>((M,), (N,))</th>
+      <td>2d-contour</td>
+      <td>kamodo.plotting.contour_plot</td>
+    </tr>
+    <tr>
+      <th>((N, M), (N, M))</th>
+      <td>2d-contour-skew</td>
+      <td>kamodo.plotting.contour_plot</td>
+    </tr>
+    <tr>
+      <th>((N, M), (N, M), (N, M))</th>
+      <td>3d-parametric-scalar</td>
+      <td>kamodo.plotting.surface</td>
+    </tr>
+    <tr>
+      <th>((1,), (N, M), (N, M))</th>
+      <td>3d-plane</td>
+      <td>kamodo.plotting.plane</td>
+    </tr>
+    <tr>
+      <th>((N, M), (1,), (N, M))</th>
+      <td>3d-plane</td>
+      <td>kamodo.plotting.plane</td>
+    </tr>
+    <tr>
+      <th>((N, M), (N, M), (1,))</th>
+      <td>3d-plane</td>
+      <td>kamodo.plotting.plane</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">(N, 1, M)</th>
+      <th>((N,), (1,), (M,))</th>
+      <td>3d-plane</td>
+      <td>kamodo.plotting.plane</td>
+    </tr>
+    <tr>
+      <th>((1,), (N,), (M,))</th>
+      <td>3d-plane</td>
+      <td>kamodo.plotting.plane</td>
+    </tr>
+    <tr>
+      <th>(1, N, M)</th>
+      <th>((N,), (1,), (M,))</th>
+      <td>3d-plane</td>
+      <td>kamodo.plotting.plane</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">(N, M, 1)</th>
+      <th>((1,), (N,), (M,))</th>
+      <td>3d-plane</td>
+      <td>kamodo.plotting.plane</td>
+    </tr>
+    <tr>
+      <th>((N,), (1,), (M,))</th>
+      <td>3d-plane</td>
+      <td>kamodo.plotting.plane</td>
+    </tr>
+    <tr>
+      <th>((N,), (M,), (1,))</th>
+      <td>3d-plane</td>
+      <td>kamodo.plotting.plane</td>
+    </tr>
+    <tr>
+      <th>((M,), (N,), (1,))</th>
+      <td>3d-plane</td>
+      <td>kamodo.plotting.plane</td>
+    </tr>
+    <tr>
+      <th>(N, M, 3)</th>
+      <th>((N,), (M,))</th>
+      <td>image</td>
+      <td>kamodo.plotting.image</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
@@ -232,6 +413,15 @@
 
 
 
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\operatorname{g_{N}}{\left(x_{N} \right)}[kg] = x_{N}^{2}\end{equation} \begin{equation}f{\left(x_{N} \right)}[g] = 1000 \operatorname{g_{N}}{\left(x_{N} \right)}\end{equation}
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -317,6 +507,15 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\rho_{N}{\left(t_{N} \right)}[\frac{kg}{m^{3}}] = \lambda{\left(t_{N} \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -391,6 +590,15 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\operatorname{x_{N,2}}{\left(\theta_{N} \right)}[cm] = \lambda{\left(\theta_{N} \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
@@ -453,6 +661,15 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\operatorname{x_{N,3}}{\left(t_{N} \right)}[km] = \lambda{\left(t_{N} \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -499,6 +716,15 @@
 
 
 
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\operatorname{f_{N}}{\left(x_{N},y_{N},z_{N} \right)}[kg] = \lambda{\left(x_{N},y_{N},z_{N} \right)}\end{equation}
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -550,6 +776,15 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\vec{f}_{N,2}{\left(\vec{r}_{N,2} \right)}[cm] = \lambda{\left(\vec{r}_{N,2} \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -598,6 +833,15 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\vec{f}_{N,2}{\left(\vec{r}_{N,2} \right)} = \lambda{\left(\vec{r}_{N,2} \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -644,6 +888,15 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\vec{f}_{N,3}{\left(\vec{r}_{N,3} \right)} = \lambda{\left(\vec{r}_{N,3} \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -689,6 +942,15 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\operatorname{f_{N,M}}{\left(x_{N},y_{M} \right)}[cm^{2}] = \lambda{\left(x_{N},y_{M} \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -731,6 +993,15 @@
 
 
 
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\operatorname{f_{NN}}{\left(x_{N},y_{N} \right)}[cm^{2}] = \lambda{\left(x_{N},y_{N} \right)}\end{equation}
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -780,6 +1051,15 @@
 
 
 
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\operatorname{f_{NM}}{\left(x_{NM},y_{NM} \right)}[cm^{2}] = \lambda{\left(x_{NM},y_{NM} \right)}\end{equation}
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -836,6 +1116,15 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}p{\left(x_{NM},y_{NM},z_{NM} \right)}[cm] = \lambda{\left(x_{NM},y_{NM},z_{NM} \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -888,6 +1177,15 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\operatorname{h_{NM}}{\left(x_{NM},y_{NM},z_{NM} \right)}[cm] = \lambda{\left(x_{NM},y_{NM},z_{NM} \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -934,6 +1232,15 @@
 
 
 
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\operatorname{f_{LMN}}{\left(x_{L},y_{M},z_{N} \right)}[\frac{g}{cm^{3}}] = \lambda{\left(x_{L},y_{M},z_{N} \right)}\end{equation}
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -1004,6 +1311,15 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\rho_{N}{\left(t_{N} \right)}[\frac{kg}{m^{3}}] = \lambda{\left(t_{N} \right)}\end{equation} \begin{equation}\operatorname{p_{N}}{\left(t_{N} \right)}[nPa] = \lambda{\left(t_{N} \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1061,6 +1377,15 @@
 
 
 
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\operatorname{g_{LMN}}{\left(x_{L},y_{M},z_{N} \right)}[\frac{g}{cm^{3}}] = \lambda{\left(x_{L},y_{M},z_{N} \right)}\end{equation} \begin{equation}\operatorname{g_{LMN}}{\left(x_{L},y_{M},z_{N} \right)}[\frac{g}{cm^{3}}] = \lambda{\left(x_{L},y_{M},z_{N} \right)}\end{equation}
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
