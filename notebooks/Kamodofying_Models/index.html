@@ -7,26 +7,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>Kamodofying Models - Kamodo Analysis Suite</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  <link href="../../css/ansi-colours.css" rel="stylesheet" />
+  <link href="../../css/jupyter-cells.css" rel="stylesheet" />
+  <link href="../../css/pandas-dataframe.css" rel="stylesheet" />
   
   <script>
     // Current page data
     var mkdocs_page_name = "Kamodofying Models";
-    var mkdocs_page_input_path = "notebooks\\Kamodofying_Models.ipynb";
+    var mkdocs_page_input_path = "notebooks/Kamodofying_Models.ipynb";
     var mkdocs_page_url = null;
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
   <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,93 +38,83 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href="../.." class="icon icon-home"> Kamodo Analysis Suite</a>
-        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../..">Home</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../about/">About</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../Kamodo/">Introduction</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../Visualization/">Visualization</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../Syntax/">Syntax</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">Kamodofying Models</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#kamodofication-tutorial">Kamodofication Tutorial</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../about/">About</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../Kamodo/">Introduction</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../Visualization/">Visualization</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../Syntax/">Syntax</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Kamodofying Models</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#kamodofication-requirements">Kamodofication requirements</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#model-reader-tutorial">Model Reader Tutorial</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#kamodofication-requirements">Kamodofication requirements</a></li>
-        
-            <li><a class="toctree-l3" href="#model-reader-tutorial">Model Reader Tutorial</a></li>
-        
-            <li><a class="toctree-l3" href="#including-defaults">Including defaults</a></li>
-        
-            <li><a class="toctree-l3" href="#final-implementation">Final Implementation</a></li>
-        
-            <li><a class="toctree-l3" href="#combined-models">Combined models</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#minimal-example-one-variable">Minimal Example: one variable</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#including-defaults">Including defaults</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#final-implementation">Final Implementation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combined-models">Combined models</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../FieldIntegration/">Field Integration</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../kameleon-kamodo/">Kameleon</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../TIEGCM/">TIEGCM</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../CommandLineInterface/">CommandLine</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../additional_resources/">Additional Resources</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../FieldIntegration/">Field Integration</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../kameleon-kamodo.ipynb">Kameleon</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../TIEGCM.ipynb">TIEGCM</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../CommandLineInterface/">CommandLine</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../API/">API</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../additional_resources/">Additional Resources</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -146,13 +139,55 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
-                <h1 id="kamodofication-tutorial">Kamodofication Tutorial<a class="headerlink" href="#kamodofication-tutorial" title="Permanent link">&para;</a></h1>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+(function() {
+  function addWidgetsRenderer() {
+    var requireJsScript = document.createElement('script');
+    requireJsScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js';
+
+    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
+    var jupyterWidgetsScript = document.createElement('script');
+    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
+    var widgetState;
+
+    // Fallback for older version:
+    try {
+      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
+
+      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
+        widgetRendererSrc = 'jupyter-js-widgets@*/dist/embed.js';
+      }
+    } catch(e) {}
+
+    jupyterWidgetsScript.src = widgetRendererSrc;
+
+    document.body.appendChild(requireJsScript);
+    document.body.appendChild(jupyterWidgetsScript);
+  }
+
+  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
+}());
+</script>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="kamodofication-tutorial">Kamodofication Tutorial<a class="headerlink" href="#kamodofication-tutorial" title="Permanent link">&para;</a></h1>
 <p>This tutorial focuses on building a Kamodofied model from scratch. To see the full implementation, skip down to the <a href="#Final-Implementation">Final-Implementation</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="kamodofication-requirements">Kamodofication requirements<a class="headerlink" href="#kamodofication-requirements" title="Permanent link">&para;</a></h2>
 <p>To Kamodofy models and data representing physical quantities, we need to define a set of functions representing the interpolation of each physical variable having the following properties:</p>
 <ul>
@@ -168,6 +203,12 @@
 <li>A data attribute - The array holding the variable (if available)</li>
 <li>Any docstrings that provide further context</li>
 </ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="model-reader-tutorial">Model Reader Tutorial<a class="headerlink" href="#model-reader-tutorial" title="Permanent link">&para;</a></h2>
 <p>Model Readers load data from disk (or server) and provide methods for interpolation. We require that for each variable of interest, the model reader should provide at least one interpolation method that satisfies all of the above requirements. Each model reader will:</p>
 <ol>
@@ -177,456 +218,648 @@
 <li>Kamodofy interpolators</li>
 <li>Register functions</li>
 </ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="minimal-example-one-variable">Minimal Example: one variable<a class="headerlink" href="#minimal-example-one-variable" title="Permanent link">&para;</a></h3>
-<pre><code class="python">from kamodo import Kamodo, kamodofy, gridify
-from scipy.interpolate import RegularGridInterpolator
-import numpy as np
-import plotly.io as pio
-</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-<pre><code>/Users/apembrok/git/kamodo/kamodo/readers/__init__.py:7: UserWarning:
 
-TIEGCM reader not installed
-</code></pre>
-<pre><code class="python">class MyModel(Kamodo): 
-    def __init__(self, filename, **kwargs):
-        # perform any necessary I/O
-        print('opening {}'.format(filename))
-        self.filename = filename
-        self.missing_value = np.NAN
-
-        # store any data needed for interpolation
-        self.x = np.linspace(1, 4, 11)
-        self.y = np.linspace(4, 7, 22)
-        self.z = np.linspace(7, 9, 33) 
-
-        xx, yy, zz = np.meshgrid(self.x, self.y, self.z, indexing='ij', sparse=True)
-        density_data = 2 * xx**3 + 3 * yy**2 - zz
-
-        self.interpolator = RegularGridInterpolator((self.x, self.y, self.z), density_data, 
-                                                    bounds_error = False,
-                                                   fill_value = self.missing_value)
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">kamodo</span> <span class="kn">import</span> <span class="n">Kamodo</span><span class="p">,</span> <span class="n">kamodofy</span><span class="p">,</span> <span class="n">gridify</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">RegularGridInterpolator</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
+</code></pre></div>
 
 
 
-        # Prepare model for function registration for the input argument
-        super(MyModel, self).__init__(**kwargs) 
-
-        # Wrap the interpolator with a nicer function signature
-        @kamodofy(units = 'kg/m^3')
-        def interpolator(xvec):
-            return self.interpolator(xvec)
-
-        self['rho(xvec)'] = interpolator
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
 
-model = MyModel('myfile.dat')
-model
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">Kamodo</span><span class="p">):</span> 
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># perform any necessary I/O</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;opening </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">NAN</span>
 
-<pre><code>opening myfile.dat
-</code></pre>
-<p>
-<script type="math/tex; mode=display">\begin{equation}\rho{\left(\vec{x} \right)} [kg/m^3] = \lambda{\left(\vec{x} \right)}\end{equation}</script>
-</p>
+        <span class="c1"># store any data needed for interpolation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span> 
+
+        <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">density_data</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">xx</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">yy</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">zz</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">interpolator</span> <span class="o">=</span> <span class="n">RegularGridInterpolator</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">),</span> <span class="n">density_data</span><span class="p">,</span> 
+                                                    <span class="n">bounds_error</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                                                   <span class="n">fill_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_value</span><span class="p">)</span>
+
+
+
+        <span class="c1"># Prepare model for function registration for the input argument</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MyModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> 
+
+        <span class="c1"># Wrap the interpolator with a nicer function signature</span>
+        <span class="nd">@kamodofy</span><span class="p">(</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;kg*m**-3&#39;</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">interpolator</span><span class="p">(</span><span class="n">xvec</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolator</span><span class="p">(</span><span class="n">xvec</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;rho&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">interpolator</span>
+
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">(</span><span class="s1">&#39;myfile.dat&#39;</span><span class="p">)</span>
+<span class="n">model</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>we can call the registered function with multiple values, getting <code>nan</code> if out of bounds:</p>
-<pre><code class="python">model.rho([[2,5,8],
-           [0,0,0]])
-</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-<pre><code>array([83.244,    nan])
-</code></pre>
+
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">rho</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span>
+           <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>However, the registered function has no default parameters, so an error will be raised if we do not provide an argument.</p>
-<pre><code class="python">try:
-    model.rho()
-except TypeError as m:
-    print(m)
-</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-<pre><code>interpolator() missing 1 required positional argument: 'xvec'
-</code></pre>
+
+<div class="codehilite"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">rho</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">m</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>At this point, the end-user of the model cannot generate quick-look graphics:</p>
-<pre><code class="python">try:
-    model.plot('rho')
-except TypeError as m:
-    print(m)
-</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-<pre><code>interpolator() missing 1 required positional argument: 'xvec'[]
-</code></pre>
+
+<div class="codehilite"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;rho&#39;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">m</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>In order to generate any plots, the user must already know where they can place resolution. For example, they could inspect some of the attributes of the model and guess the size of the domain, then choose points from that space.</p>
-<pre><code class="python">xx,yy,zz = np.meshgrid(model.x, model.y, model.z)
-points = np.column_stack([xx.ravel(),yy.ravel(),zz.ravel()])
-randints = np.random.randint(0,len(points), 1000)
-</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-<pre><code class="python">fig = model.plot(rho = dict(xvec = points[randints] ))
-</code></pre>
 
-<pre><code class="python">pio.write_image(fig, 'images/kamodofied1.svg')
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">zz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="n">zz</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">randints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">),</span> <span class="mi">1000</span><span class="p">)</span>
+</code></pre></div>
 
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">fig</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rho</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">xvec</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">randints</span><span class="p">]</span> <span class="p">))</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="c1"># pio.write_image(fig, &#39;images/kamodofied1.svg&#39;)</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="kamodofied1" src="../images/kamodofied1.svg" /></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Hopefully, the user doesn't choose points where the solution may be invalid. Next, we'll modify the original function to provide a griddable variable with default parameters.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="including-defaults">Including defaults<a class="headerlink" href="#including-defaults" title="Permanent link">&para;</a></h2>
 <p>The above example produced a kamodofied model with one variable, but we are unable to produce quick-look graphics, which required the user to inspect the model to guess where interpolation may be valid. Here we show how to include defaults so the user doesn't have to guess.</p>
-<pre><code class="python">class MyModel(Kamodo): 
-    def __init__(self, filename, **kwargs):
-        # perform any necessary I/O
-        print('opening {}'.format(filename))
-        self.filename = filename
-        self.missing_value = np.NAN
-
-        # store any data needed for interpolation
-        self.x = np.linspace(1, 4, 11)
-        self.y = np.linspace(4, 7, 22)
-        self.z = np.linspace(7, 9, 33) 
-
-        xx, yy, zz = np.meshgrid(self.x, self.y, self.z, indexing='ij', sparse=True)
-        density_data = 2 * xx**3 + 3 * yy**2 - zz
-
-        self.interpolator = RegularGridInterpolator((self.x, self.y, self.z), density_data, 
-                                                    bounds_error = False,
-                                                   fill_value = self.missing_value)
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
 
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">Kamodo</span><span class="p">):</span> 
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># perform any necessary I/O</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;opening </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">NAN</span>
 
-        # Prepare model for function registration for the input argument
-        super(MyModel, self).__init__(**kwargs) 
+        <span class="c1"># store any data needed for interpolation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span> 
 
-        # Wrap the interpolator with a nicer function signature
-        @kamodofy(units = 'kg/m^3')
-        @gridify(x = self.x, y = self.y, z = self.z) # &lt;--- The only change to the model
-        def interpolator(xvec):
-            return self.interpolator(xvec)
+        <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">density_data</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">xx</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">yy</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">zz</span>
 
-        self['rho'] = interpolator
+        <span class="bp">self</span><span class="o">.</span><span class="n">interpolator</span> <span class="o">=</span> <span class="n">RegularGridInterpolator</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">),</span> <span class="n">density_data</span><span class="p">,</span> 
+                                                    <span class="n">bounds_error</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                                                   <span class="n">fill_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_value</span><span class="p">)</span>
 
 
-model = MyModel('myfile.dat')
-model
-</code></pre>
 
-<pre><code>opening myfile.dat
-</code></pre>
-<p>
-<script type="math/tex; mode=display">\begin{equation}\rho{\left(x,y,z \right)} [kg/m^3] = \lambda{\left(x,y,z \right)}\end{equation}</script>
-</p>
+        <span class="c1"># Prepare model for function registration for the input argument</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MyModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> 
+
+        <span class="c1"># Wrap the interpolator with a nicer function signature</span>
+        <span class="nd">@kamodofy</span><span class="p">(</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;kg/m**3&#39;</span><span class="p">)</span>
+        <span class="nd">@gridify</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">)</span> <span class="c1"># &lt;--- The only change to the model</span>
+        <span class="k">def</span> <span class="nf">interpolator</span><span class="p">(</span><span class="n">xvec</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpolator</span><span class="p">(</span><span class="n">xvec</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;rho&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">interpolator</span>
+
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">(</span><span class="s1">&#39;myfile.dat&#39;</span><span class="p">)</span>
+<span class="n">model</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>By adding the <code>@gridify</code> line, we have modified the original function to be one that generates gridded data. Moreover, the variable now has default parameters.</p>
-<pre><code class="python">model.rho().shape
-</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-<pre><code>(22, 11, 33)
-</code></pre>
+
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">rho</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>We can now specify one or more arguments to get a plane mapping of the solution.</p>
-<pre><code class="python">model.rho(z = 8).shape
-</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-<pre><code>(22, 11, 1)
-</code></pre>
+
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">rho</span><span class="p">(</span><span class="n">z</span> <span class="o">=</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>But how do we know to choose the plane <code>z=8</code> for a valid solution? We can use kamodo's function inspection to get the default ranges for each parameter.</p>
-<pre><code class="python">from kamodo import get_defaults
-</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-<pre><code class="python">get_defaults(model.rho)['z'].mean()
-</code></pre>
 
-<pre><code>8.0
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">kamodo</span> <span class="kn">import</span> <span class="n">get_defaults</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">get_defaults</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">rho</span><span class="p">)[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="final-implementation">Final Implementation<a class="headerlink" href="#final-implementation" title="Permanent link">&para;</a></h2>
 <p>In the final implementation of our model reader, we include multiple variables with different function signatures. Here, the gridded solutions have suffixes <code>_ijk</code> to emphasize their structure. This allows more flexibility for the end user.</p>
-<pre><code class="python">class MyModel(Kamodo): 
-    def __init__(self, filename, **kwargs):
-        # perform any necessary I/O
-        print('opening {}'.format(filename))
-        self.filename = filename
-        self.missing_value = np.NAN
-
-        # store any data needed for interpolation
-        self.x = np.linspace(1, 4, 11)
-        self.y = np.linspace(4, 7, 22)
-        self.z = np.linspace(7, 9, 33)        
-        xx, yy, zz = np.meshgrid(self.x, self.y, self.z, indexing='ij', sparse=True)
-        density_data = 2 * xx**3 + 3 * yy**2 - zz
-        pressure_data = xx**2 + yy**2 + zz**2
-
-
-        self.variables = dict(rho = dict(units = 'kg/m^3', data = density_data),
-                              P = dict(units = 'nPa', data = pressure_data))
-
-        # Prepare model for function registration
-        super(MyModel, self).__init__(**kwargs) 
-
-        for varname in self.variables:
-            units = self.variables[varname]['units']
-            self.register_variable(varname, units)
-
-    def register_variable(self, varname, units):
-        interpolator = self.get_grid_interpolator(varname)
-
-        # store the interpolator
-        self.variables[varname]['interpolator'] = interpolator
-
-        def interpolate(xvec):  
-            return self.variables[varname]['interpolator'](xvec)
-
-        # update docstring for this variable
-        interpolate.__doc__ = &quot;A function that returns {} in [{}].&quot;.format(varname,units)
-
-        self[varname] = kamodofy(interpolate, 
-                           units = units, 
-                           citation = &quot;Pembroke et al 2019&quot;,
-                          data = None)
-        self[varname + '_ijk'] = kamodofy(gridify(self[varname], 
-                                                  x_i = self.x, 
-                                                  y_j = self.y, 
-                                                  z_k = self.z),
-                            units = units,
-                            citation = &quot;Pembroke et al 2019&quot;,
-                            data = self.variables[varname]['data'])
-
-
-    def get_grid_interpolator(self, varname):
-        &quot;&quot;&quot;create a regulard grid interpolator for this variable&quot;&quot;&quot;
-        data =  self.variables[varname]['data']
-
-        interpolator = RegularGridInterpolator((self.x, self.y, self.z), data, 
-                                                bounds_error = False,
-                                               fill_value = self.missing_value)
-        return interpolator
-
-
-model = MyModel('myfile.dat')
-model
-</code></pre>
-
-<pre><code>opening myfile.dat
-</code></pre>
-<p>
-<script type="math/tex; mode=display">\begin{equation}\rho{\left(\vec{x} \right)} [kg/m^3] = \lambda{\left(\vec{x} \right)}\end{equation}</script>
-<script type="math/tex; mode=display">\begin{equation}\rho_{ijk}{\left(x_{i},y_{j},z_{k} \right)} [kg/m^3] = \lambda{\left(x_{i},y_{j},z_{k} \right)}\end{equation}</script>
-<script type="math/tex; mode=display">\begin{equation}P{\left(\vec{x} \right)} [nPa] = \lambda{\left(\vec{x} \right)}\end{equation}</script>
-<script type="math/tex; mode=display">\begin{equation}\operatorname{P_{ijk}}{\left(x_{i},y_{j},z_{k} \right)} [nPa] = \lambda{\left(x_{i},y_{j},z_{k} \right)}\end{equation}</script>
-</p>
-<pre><code class="python">model.rho((2,5,8))
-</code></pre>
-
-<pre><code>array(83.244)
-</code></pre>
-<pre><code class="python">model.P((2,5,8))
-</code></pre>
-
-<pre><code>array(93.02)
-</code></pre>
-<pre><code class="python">model.detail()
-</code></pre>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>lhs</th>
-      <th>rhs</th>
-      <th>symbol</th>
-      <th>units</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>rho(xvec)</th>
-      <td>rho</td>
-      <td>None</td>
-      <td>rho(xvec)</td>
-      <td>kg/m^3</td>
-    </tr>
-    <tr>
-      <th>rho_ijk(x_i, y_j, z_k)</th>
-      <td>rho_ijk</td>
-      <td>None</td>
-      <td>rho_ijk(x_i, y_j, z_k)</td>
-      <td>kg/m^3</td>
-    </tr>
-    <tr>
-      <th>P(xvec)</th>
-      <td>P</td>
-      <td>None</td>
-      <td>P(xvec)</td>
-      <td>nPa</td>
-    </tr>
-    <tr>
-      <th>P_ijk(x_i, y_j, z_k)</th>
-      <td>P_ijk</td>
-      <td>None</td>
-      <td>P_ijk(x_i, y_j, z_k)</td>
-      <td>nPa</td>
-    </tr>
-  </tbody>
-</table>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
+
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">Kamodo</span><span class="p">):</span> 
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># perform any necessary I/O</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;opening </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">missing_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">NAN</span>
+
+        <span class="c1"># store any data needed for interpolation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span>        
+        <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">density_data</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">xx</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">yy</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">zz</span>
+        <span class="n">pressure_data</span> <span class="o">=</span> <span class="n">xx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">yy</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">zz</span><span class="o">**</span><span class="mi">2</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">variables</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">rho</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;kg/m**3&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">density_data</span><span class="p">),</span>
+                              <span class="n">P</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;nPa&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pressure_data</span><span class="p">))</span>
+
+        <span class="c1"># Prepare model for function registration</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MyModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> 
+
+        <span class="k">for</span> <span class="n">varname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">:</span>
+            <span class="n">units</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">varname</span><span class="p">][</span><span class="s1">&#39;units&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">register_variable</span><span class="p">(</span><span class="n">varname</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">register_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">varname</span><span class="p">,</span> <span class="n">units</span><span class="p">):</span>
+        <span class="n">interpolator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_grid_interpolator</span><span class="p">(</span><span class="n">varname</span><span class="p">)</span>
+
+        <span class="c1"># store the interpolator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">varname</span><span class="p">][</span><span class="s1">&#39;interpolator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">interpolator</span>
+
+        <span class="k">def</span> <span class="nf">interpolate</span><span class="p">(</span><span class="n">xvec</span><span class="p">):</span>  
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">varname</span><span class="p">][</span><span class="s1">&#39;interpolator&#39;</span><span class="p">](</span><span class="n">xvec</span><span class="p">)</span>
+
+        <span class="c1"># update docstring for this variable</span>
+        <span class="n">interpolate</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="s2">&quot;A function that returns </span><span class="si">{}</span><span class="s2"> in [</span><span class="si">{}</span><span class="s2">].&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">varname</span><span class="p">,</span><span class="n">units</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span> <span class="o">=</span> <span class="n">kamodofy</span><span class="p">(</span><span class="n">interpolate</span><span class="p">,</span> 
+                           <span class="n">units</span> <span class="o">=</span> <span class="n">units</span><span class="p">,</span> 
+                           <span class="n">citation</span> <span class="o">=</span> <span class="s2">&quot;Pembroke et al 2019&quot;</span><span class="p">,</span>
+                          <span class="n">data</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">[</span><span class="n">varname</span> <span class="o">+</span> <span class="s1">&#39;_ijk&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kamodofy</span><span class="p">(</span><span class="n">gridify</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">varname</span><span class="p">],</span> 
+                                                  <span class="n">x_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> 
+                                                  <span class="n">y_j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> 
+                                                  <span class="n">z_k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">squeeze</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                            <span class="n">units</span> <span class="o">=</span> <span class="n">units</span><span class="p">,</span>
+                            <span class="n">citation</span> <span class="o">=</span> <span class="s2">&quot;Pembroke et al 2019&quot;</span><span class="p">,</span>
+                            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">varname</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
+
+
+    <span class="k">def</span> <span class="nf">get_grid_interpolator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">varname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;create a regulard grid interpolator for this variable&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">varname</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+
+        <span class="n">interpolator</span> <span class="o">=</span> <span class="n">RegularGridInterpolator</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">),</span> <span class="n">data</span><span class="p">,</span> 
+                                                <span class="n">bounds_error</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                                               <span class="n">fill_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">interpolator</span>
+
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">(</span><span class="s1">&#39;myfile.dat&#39;</span><span class="p">)</span>
+<span class="n">model</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">rho</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">P</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">detail</span><span class="p">()</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Here the <code>@kamodofy</code> decorator handles the provisioning of kamodo-specific metadata. For example, the declared function <code>rho</code> now has a <code>meta</code> attribute:</p>
-<pre><code class="python">model.rho.meta
-</code></pre>
-
-<pre><code>{'units': 'kg/m^3',
- 'citation': 'Pembroke et al 2019',
- 'equation': None,
- 'hidden_args': []}
-</code></pre>
-<p><code>@kamodofy</code> also adds the data attribute, by calling the function with its default parameters:</p>
-<pre><code class="python">model.rho_ijk.data.shape
-</code></pre>
-
-<pre><code>(11, 22, 33)
-</code></pre>
-<h2 id="combined-models">Combined models<a class="headerlink" href="#combined-models" title="Permanent link">&para;</a></h2>
-<p>We could also register the model's interpolating method as part of some other Kamodo object, such as another kamodofied model reader or data source:</p>
-<pre><code class="python">from kamodo import Kamodo
-kamodo = Kamodo(rho = model.rho)
-kamodo
-</code></pre>
-
-<p>
-<script type="math/tex; mode=display">\begin{equation}\rho{\left(\vec{x} \right)} [kg/m^3] = \lambda{\left(\vec{x} \right)}\end{equation}</script>
-</p>
-<p>We can now compose our density function with expressions defined by other models:</p>
-<pre><code class="python">kamodo['vol [cm^3]'] = '4/3 * pi * (x**2 + y**2)**(3/2)'
-kamodo['mass [g]'] = 'rho*vol'
-kamodo
-</code></pre>
-
-<p>
-<script type="math/tex; mode=display">\begin{equation}\rho{\left(\vec{x} \right)} [kg/m^3] = \lambda{\left(\vec{x} \right)}\end{equation}</script>
-<script type="math/tex; mode=display">\begin{equation}\operatorname{vol}{\left(x,y \right)} [cm^3] = \frac{4 \pi \left(x^{2} + y^{2}\right)^{\frac{3}{2}}}{3}\end{equation}</script>
-<script type="math/tex; mode=display">\begin{equation}\operatorname{mass}{\left(x,\vec{x},y \right)} [g] = \frac{\rho{\left(\vec{x} \right)} \operatorname{vol}{\left(x,y \right)}}{1000}\end{equation}</script>
-</p>
-<pre><code class="python">kamodo.detail()
-</code></pre>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>lhs</th>
-      <th>rhs</th>
-      <th>symbol</th>
-      <th>units</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>rho(xvec)</th>
-      <td>rho</td>
-      <td>None</td>
-      <td>rho(xvec)</td>
-      <td>kg/m^3</td>
-    </tr>
-    <tr>
-      <th>vol(x, y)</th>
-      <td>vol</td>
-      <td>4*pi*(x**2 + y**2)**(3/2)/3</td>
-      <td>vol(x, y)</td>
-      <td>cm^3</td>
-    </tr>
-    <tr>
-      <th>mass(x, xvec, y)</th>
-      <td>mass</td>
-      <td>rho(xvec)*vol(x, y)/1000</td>
-      <td>mass(x, xvec, y)</td>
-      <td>g</td>
-    </tr>
-  </tbody>
-</table>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
+
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">rho</span><span class="o">.</span><span class="n">meta</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>@kamodofy</code> also adds the data attribute, by calling the function with its default parameters:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">rho_ijk</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="combined-models">Combined models<a class="headerlink" href="#combined-models" title="Permanent link">&para;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We could also register the model's interpolating method as part of some other Kamodo object, such as another kamodofied model reader or data source:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">kamodo</span> <span class="kn">import</span> <span class="n">Kamodo</span>
+<span class="n">kamodo</span> <span class="o">=</span> <span class="n">Kamodo</span><span class="p">(</span><span class="n">rho</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span>
+<span class="n">kamodo</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can now compose our density function with expressions defined by other models:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">kamodo</span><span class="p">[</span><span class="s1">&#39;vol&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;4/3 * pi * (xvec)**(3/2)&#39;</span>
+<span class="n">kamodo</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">kamodo</span><span class="p">[</span><span class="s1">&#39;mass&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;rho*vol&#39;</span>
+<span class="n">kamodo</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">kamodo</span><span class="o">.</span><span class="n">detail</span><span class="p">()</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>The following lines will save the image to your working directory.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Saving images requires <code>plotly-orca-1.2.1</code>, available through conda: <code>conda install -c plotly plotly-orca</code></p>
 </div>
-<pre><code class="python">model.rho_ijk().shape
-</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-<pre><code>(22, 11, 33)
-</code></pre>
-<pre><code class="python">import plotly.io as pio
-fig = model.plot(rho_ijk = dict(z_k = model.z.mean()))
-</code></pre>
 
-<pre><code class="python">from plotly.offline import iplot, init_notebook_mode, plot
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">rho_ijk</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div>
 
-<pre><code class="python">init_notebook_mode(connected = True)
-</code></pre>
 
-<script type="text/javascript">
-window.PlotlyConfig = {MathJaxConfig: 'local'};
-if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
-if (typeof require !== 'undefined') {
-require.undef("plotly");
-requirejs.config({
-    paths: {
-        'plotly': ['https://cdn.plot.ly/plotly-latest.min']
-    }
-});
-require(['plotly'], function(Plotly) {
-    window._Plotly = Plotly;
-});
-}
-</script>
 
-<pre><code class="python">fig = model.plot(rho_ijk =  dict(z_k = [model.z.mean()]))
-</code></pre>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-<pre><code class="python">pio.write_image(fig, 'kamodofied_model_1.svg', validate = False)
-</code></pre>
 
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rho_ijk</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">z_k</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">z</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">plotly.offline</span> <span class="kn">import</span> <span class="n">iplot</span><span class="p">,</span> <span class="n">init_notebook_mode</span><span class="p">,</span> <span class="n">plot</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">init_notebook_mode</span><span class="p">(</span><span class="n">connected</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">fig</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rho_ijk</span> <span class="o">=</span>  <span class="nb">dict</span><span class="p">(</span><span class="n">z_k</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">z</span><span class="o">.</span><span class="n">mean</span><span class="p">()]))</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="c1"># pio.write_image(fig, &#39;kamodofied_model_1.svg&#39;, validate = False)</span>
+</code></pre></div>
+
+
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>We use markdown to embed the image into the notebook.
 <img alt="Kamodofied Density" src="../kamodofied_model_1.svg?5" /></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Alternative ways to graph:</p>
-<pre><code class="python">## uncomment to open interactive plot in the notebook
-# from plotly.offline import init_notebook_mode, iplot
-# init_notebook_mode(connected = True)
-# iplot(kamodo.plot(rho = dict(x = model.x.mean()))) 
-</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-<pre><code class="python"># # uncomment to open interactive plot in separate tab
-# from plotly.offline import plot
-# plot(kamodo.plot(rho = dict(z = 8))) 
-</code></pre>
 
-<pre><code class="python">%load_ext autoreload
+<div class="codehilite"><pre><span></span><code><span class="c1">## uncomment to open interactive plot in the notebook</span>
+<span class="c1"># from plotly.offline import init_notebook_mode, iplot</span>
+<span class="c1"># init_notebook_mode(connected = True)</span>
+<span class="c1"># iplot(kamodo.plot(rho = dict(x = model.x.mean()))) </span>
+</code></pre></div>
 
-%autoreload 2
-</code></pre>
+
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="c1"># # uncomment to open interactive plot in separate tab</span>
+<span class="c1"># from plotly.offline import plot</span>
+<span class="c1"># plot(kamodo.plot(rho = dict(z = 8))) </span>
+</code></pre></div>
+
+
+
+</div>
+</div>
               
             </div>
           </div>
@@ -649,7 +882,7 @@ require(['plotly'], function(Plotly) {
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -659,20 +892,27 @@ require(['plotly'], function(Plotly) {
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="../Syntax/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../FieldIntegration/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Syntax/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../FieldIntegration/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
     <script src="../../js/theme.js" defer></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

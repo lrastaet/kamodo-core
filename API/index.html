@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>API - Kamodo Analysis Suite</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  <link href="../css/ansi-colours.css" rel="stylesheet" />
+  <link href="../css/jupyter-cells.css" rel="stylesheet" />
+  <link href="../css/pandas-dataframe.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "API";
+    var mkdocs_page_input_path = "API.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Kamodo Analysis Suite</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../notebooks/Kamodo/">Introduction</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../notebooks/Visualization/">Visualization</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../notebooks/Syntax/">Syntax</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../notebooks/Kamodofying_Models/">Kamodofying Models</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../notebooks/FieldIntegration/">Field Integration</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../notebooks/kameleon-kamodo.ipynb">Kameleon</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../notebooks/TIEGCM.ipynb">TIEGCM</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../notebooks/CommandLineInterface/">CommandLine</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">API</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#kamodo">Kamodo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#plotting">Plotting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#plot-types">Plot types</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scatter-plot">Scatter plot</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#line-plot">Line plot</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vector-plot">Vector plot</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contour-plot">Contour plot</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3d-plane">3D Plane</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3d-surface">3D Surface</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#carpet-plot">Carpet plot</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#triangulated-mesh-plot">Triangulated Mesh plot</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#image-plot">Image plot</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#decorators">Decorators</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#kamodofy">kamodofy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pointlike">pointlike</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#partial">partial</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../additional_resources/">Additional Resources</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Kamodo Analysis Suite</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>API</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="api-documentation">API documentation<a class="headerlink" href="#api-documentation" title="Permanent link">&para;</a></h1>
+<h2 id="kamodo">Kamodo<a class="headerlink" href="#kamodo" title="Permanent link">&para;</a></h2>
+<div class="autodoc">
+<div class="autodoc-signature"><em>class </em><code>kamodo.<strong>Kamodo</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Kamodo base class demonstrating common API for space weather models
+This API provides access to space weather fields and their properties through:
+    interpolation of variables at user-defined points
+    unit conversions
+    coordinate transformations specific to space weather domains
+Required methods that have not been implemented in child classes
+will raise a NotImplementedError</p></div>
+<div class="autodoc-members">
+<div class="autodoc-signature"><code><strong><strong>init</strong></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Base initialization method
+Args:
+    param1 (str, optional): Filename of datafile to interpolate from</p></div>
+<div class="autodoc-signature"><code><strong><strong>setitem</strong></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">sym_name</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">input_expr</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Assigns a function or expression to a new symbol,
+performs unit conversion where appropriate</p></div>
+<div class="autodoc-signature"><code><strong><strong>getitem</strong></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">key</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"></div>
+<div class="autodoc-signature"><code><strong>plot</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*variables</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">plot_partial={}</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**figures</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"></div>
+<div class="autodoc-signature"><code><strong>figure</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">variable</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">indexing='ij'</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Generates a plotly figure for a given variable and keyword arguments</p></div>
+<div class="autodoc-signature"><code><strong>to_latex</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">keys=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">mode='equation'</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Generate list of LaTeX-formated formulas
+Upon registeration, each function should have a <em>repr_latex</em> method.</p></div>
+<div class="autodoc-signature"><code><strong><em>repr_latex</em></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Provide notebook rendering of formulas</p></div>
+<div class="autodoc-signature"><code><strong>detail</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Constructs a pandas dataframe from signatures</p></div>
+<div class="autodoc-signature"><code><strong>evaluate</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">variable</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*args</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>evaluates the variable
+if the variable is not present, try to parse it as a semicolon-delimited list</p></div>
+</div>
+</div>
+<h2 id="plotting">Plotting<a class="headerlink" href="#plotting" title="Permanent link">&para;</a></h2>
+<h3 id="plot-types">Plot types<a class="headerlink" href="#plot-types" title="Permanent link">&para;</a></h3>
+<p>As described in <a href="../notebooks/Visualization/">Visualization</a>, Kamodo automatically maps registered functions to certain plot types. All such functions expect the same input variables and return a triplet <code>[trace], chart_type, layout</code> where <code>[trace]</code> is a list of plotly trace objects.</p>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.plotting.<strong>get_plot_types_df</strong></code><span class="autodoc-punctuation">(</span><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>pack the plot types into a dataframe</p></div>
+</div>
+<p>The available plot types may be imported thusly:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">kamodo.plotting</span> <span class="kn">import</span> <span class="n">plot_types</span>
+</code></pre></div>
+
+<h3 id="scatter-plot">Scatter plot<a class="headerlink" href="#scatter-plot" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.plotting.<strong>scatter_plot</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">result</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">titles</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">verbose=False</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Generates a 3d scatter plot</p>
+<p>result: a dictionary of parameters
+titles: a dictionary of titles</p>
+<p>returns:
+    [trace], chart_type, layout</p></div>
+</div>
+<h3 id="line-plot">Line plot<a class="headerlink" href="#line-plot" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.plotting.<strong>line_plot</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">result</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">titles</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">verbose=False</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>N-d line plot f(t)</p></div>
+</div>
+<h3 id="vector-plot">Vector plot<a class="headerlink" href="#vector-plot" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.plotting.<strong>vector_plot</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">result</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">titles</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">verbose=False</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"></div>
+</div>
+<h3 id="contour-plot">Contour plot<a class="headerlink" href="#contour-plot" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.plotting.<strong>contour_plot</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">result</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">titles</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">indexing</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">verbose=False</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"></div>
+</div>
+<h3 id="3d-plane">3D Plane<a class="headerlink" href="#3d-plane" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.plotting.<strong>plane</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">result</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">titles</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">indexing='xy'</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">verbose=False</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"></div>
+</div>
+<h3 id="3d-surface">3D Surface<a class="headerlink" href="#3d-surface" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.plotting.<strong>surface</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">result</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">titles</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">verbose=False</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"></div>
+</div>
+<h3 id="carpet-plot">Carpet plot<a class="headerlink" href="#carpet-plot" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.plotting.<strong>carpet_plot</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">results</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">title</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">xaxis</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">yaxis</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">indexing='xy'</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Assumes ordered dict where values have the same shape</p></div>
+</div>
+<h3 id="triangulated-mesh-plot">Triangulated Mesh plot<a class="headerlink" href="#triangulated-mesh-plot" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.plotting.<strong>tri_surface_plot</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">result</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">titles</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">verbose=False</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"></div>
+</div>
+<h3 id="image-plot">Image plot<a class="headerlink" href="#image-plot" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.plotting.<strong>image</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">result</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">titles</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">verbose=False</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"></div>
+</div>
+<h2 id="decorators">Decorators<a class="headerlink" href="#decorators" title="Permanent link">&para;</a></h2>
+<p>These decorators may also be imported like this</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">kamodo</span> <span class="kn">import</span> <span class="n">kamodofy</span>
+</code></pre></div>
+
+<h3 id="kamodofy">kamodofy<a class="headerlink" href="#kamodofy" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.util.<strong>kamodofy</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">_func=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">units=''</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">arg_units=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">data=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">update=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">equation=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">citation=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">hidden_args=[]</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Adds meta and data attributes to functions for compatibility with Komodo
+meta: a dictionary containing {units: <str>}
+data:
+    if supplied, set f.data = data
+    if not supplied, set f.data = f(), assuming it can be called with no arguments.
+        If f cannot be called with no arguments, set f.data = None</p></div>
+</div>
+<p>Usage:</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@kamodofy</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;kg/cm^2&#39;</span><span class="p">,</span> <span class="n">arg_units</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;cm&#39;</span><span class="p">),</span> <span class="n">citation</span><span class="o">=</span><span class="s1">&#39;Pembroke et. al 2022&#39;</span><span class="p">,</span> <span class="n">hidden_args</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">myfunc</span><span class="o">.</span><span class="n">meta</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="go">{&#39;units&#39;: &#39;kg/cm^2&#39;,</span>
+<span class="go"> &#39;arg_units&#39;: {&#39;x&#39;: &#39;cm&#39;},</span>
+<span class="go"> &#39;citation&#39;: &#39;Pembroke et. al 2022&#39;,</span>
+<span class="go"> &#39;equation&#39;: None,</span>
+<span class="go"> &#39;hidden_args&#39;: [&#39;verbose&#39;]}</span>
+</code></pre></div>
+
+<p>The above metadata is used by Kamodo objects for function registration. Similarly, a <code>data</code> attribute is attached which represents the output of the function when called with no arguments:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">myfunc</span><span class="o">.</span><span class="n">data</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="go">900</span>
+</code></pre></div>
+
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.util.<strong>gridify</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">_func=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">order='A'</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">squeeze=True</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**defaults</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Given a function of shape (n,dim) and arguments of shape (L), (M), calls f with points L*M</p>
+<p>order: 'A' (default) uses indexing='xy' in meshgrid
+       'C' uses indexing='ij' in meshgrid
+squeeze: True (default) passed to reshape before returning</p></div>
+</div>
+<h3 id="pointlike">pointlike<a class="headerlink" href="#pointlike" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.util.<strong>pointlike</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">_func=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">signature=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">otypes=[<class 'float'>]</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">squeeze=None</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Transforms a single-argument function to one that accepts m points of dimension n</p></div>
+</div>
+<h3 id="partial">partial<a class="headerlink" href="#partial" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><code>kamodo.util.<strong>partial</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">_func=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**partial_kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>A partial function decorator
+Reduces function signature to reflect partially assigned kwargs</p></div>
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../additional_resources/" class="btn btn-neutral float-right" title="Additional Resources">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../notebooks/CommandLineInterface/" class="btn btn-neutral" title="CommandLine"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../notebooks/CommandLineInterface/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../additional_resources/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
