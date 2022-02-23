@@ -85,10 +85,6 @@
                     <li class="toctree-l1"><a class="" href="../notebooks/TIEGCM.ipynb">TIEGCM</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../notebooks/CommandLineInterface/">CommandLine</a>
-                    </li>
-                </ul>
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">API</a>
     <ul class="current">
@@ -172,24 +168,26 @@
 <h2 id="kamodo">Kamodo<a class="headerlink" href="#kamodo" title="Permanent link">&para;</a></h2>
 <div class="autodoc">
 <div class="autodoc-signature"><em>class </em><code>kamodo.<strong>Kamodo</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Kamodo base class demonstrating common API for space weather models
-This API provides access to space weather fields and their properties through:
-    interpolation of variables at user-defined points
-    unit conversions
-    coordinate transformations specific to space weather domains
-Required methods that have not been implemented in child classes
+<div class="autodoc-docstring"><p>Kamodo base class demonstrating common API for space weather models</p>
+<p>This API provides access to space weather fields and their properties through:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">interpolation</span> <span class="n">of</span> <span class="n">variables</span> <span class="n">at</span> <span class="n">user</span><span class="o">-</span><span class="n">defined</span> <span class="n">points</span>
+<span class="n">unit</span> <span class="n">conversions</span>
+<span class="n">coordinate</span> <span class="n">transformations</span> <span class="n">specific</span> <span class="n">to</span> <span class="n">space</span> <span class="n">weather</span> <span class="n">domains</span>
+</code></pre></div>
+
+<p>Required methods that have not been implemented in child classes
 will raise a NotImplementedError</p></div>
 <div class="autodoc-members">
 <div class="autodoc-signature"><code><strong><strong>init</strong></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Base initialization method
-Args:
+<div class="autodoc-docstring"><p>Base initialization method</p>
+<p>Args:
     param1 (str, optional): Filename of datafile to interpolate from</p></div>
 <div class="autodoc-signature"><code><strong><strong>setitem</strong></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">sym_name</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">input_expr</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"><p>Assigns a function or expression to a new symbol,
 performs unit conversion where appropriate</p></div>
 <div class="autodoc-signature"><code><strong><strong>getitem</strong></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">key</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"></div>
-<div class="autodoc-signature"><code><strong>plot</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*variables</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">plot_partial={}</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**figures</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-signature"><code><strong>plot</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*variables</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**figures</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"></div>
 <div class="autodoc-signature"><code><strong>figure</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">variable</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">indexing='ij'</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"><p>Generates a plotly figure for a given variable and keyword arguments</p></div>
@@ -201,8 +199,8 @@ Upon registeration, each function should have a <em>repr_latex</em> method.</p><
 <div class="autodoc-signature"><code><strong>detail</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"><p>Constructs a pandas dataframe from signatures</p></div>
 <div class="autodoc-signature"><code><strong>evaluate</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">variable</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*args</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>evaluates the variable
-if the variable is not present, try to parse it as a semicolon-delimited list</p></div>
+<div class="autodoc-docstring"><p>evaluates the variable</p>
+<p>if the variable is not present, try to parse it as a semicolon-delimited list</p></div>
 </div>
 </div>
 <h2 id="plotting">Plotting<a class="headerlink" href="#plotting" title="Permanent link">&para;</a></h2>
@@ -273,8 +271,8 @@ titles: a dictionary of titles</p>
 <h3 id="kamodofy">kamodofy<a class="headerlink" href="#kamodofy" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
 <div class="autodoc-signature"><code>kamodo.util.<strong>kamodofy</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">_func=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">units=''</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">arg_units=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">data=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">update=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">equation=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">citation=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">hidden_args=[]</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Adds meta and data attributes to functions for compatibility with Komodo
-meta: a dictionary containing {units: <str>}
+<div class="autodoc-docstring"><p>Adds meta and data attributes to functions for compatibility with Komodo</p>
+<p>meta: a dictionary containing {units: <str>}
 data:
     if supplied, set f.data = data
     if not supplied, set f.data = f(), assuming it can be called with no arguments.
@@ -316,8 +314,8 @@ squeeze: True (default) passed to reshape before returning</p></div>
 <h3 id="partial">partial<a class="headerlink" href="#partial" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
 <div class="autodoc-signature"><code>kamodo.util.<strong>partial</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">_func=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**partial_kwargs</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>A partial function decorator
-Reduces function signature to reflect partially assigned kwargs</p></div>
+<div class="autodoc-docstring"><p>A partial function decorator</p>
+<p>Reduces function signature to reflect partially assigned kwargs</p></div>
 </div>
               
             </div>
@@ -329,7 +327,7 @@ Reduces function signature to reflect partially assigned kwargs</p></div>
         <a href="../additional_resources/" class="btn btn-neutral float-right" title="Additional Resources">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../notebooks/CommandLineInterface/" class="btn btn-neutral" title="CommandLine"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../notebooks/FieldIntegration/" class="btn btn-neutral" title="Field Integration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -355,7 +353,7 @@ Reduces function signature to reflect partially assigned kwargs</p></div>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../notebooks/CommandLineInterface/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../notebooks/FieldIntegration/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../additional_resources/" style="color: #fcfcfc">Next &raquo;</a></span>
