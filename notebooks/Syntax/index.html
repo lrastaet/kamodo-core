@@ -198,8 +198,8 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="conventions">Conventions<a class="headerlink" href="#conventions" title="Permanent link">&para;</a></h2>
-<p>Kamodo's variable names have to follow python's naming conventions - only numbers, letters, and underscores, which are too restrictive for mathematical symbols. Therefore, Kamodo uses sympy's conventions when generating LaTeX from variable names, which provide a means to write mathematical symbols in a way ammenable to python. More details of sympy's conventions may be found <a href="https://docs.sympy.org/0.7.0/modules/galgebra/latex_ex/latex_ex.html#">here</a>. Kamodo also adds some additional features not covered by sympy.</p>
-<h4 id="superscriptssubscripts">Superscripts/Subscripts<a class="headerlink" href="#superscriptssubscripts" title="Permanent link">&para;</a></h4>
+<p>Kamodo's variable names have to follow python's naming conventions - only numbers, letters, and underscores, which are too restrictive for mathematical symbols. Therefore, Kamodo uses sympy's conventions when generating LaTeX from variable names, which provide a means to write mathematical symbols in a way ammenable to python. More details of sympy's parsing may be found <a href="https://docs.sympy.org/latest/modules/parsing.html">here</a>. Kamodo also adds some additional features not covered by sympy.</p>
+<h3 id="superscriptssubscripts">Superscripts/Subscripts<a class="headerlink" href="#superscriptssubscripts" title="Permanent link">&para;</a></h3>
 <p>Subscripts are encoded with single underscores. Superscripts are encoded with double underscores. Combinations are possible.</p>
 </div>
 </div>
@@ -227,7 +227,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="greek-letters">Greek letters<a class="headerlink" href="#greek-letters" title="Permanent link">&para;</a></h4>
+<h3 id="greek-letters">Greek letters<a class="headerlink" href="#greek-letters" title="Permanent link">&para;</a></h3>
 <p>Most greek letters are supported using their corresponding english name. Use capitalization if the greek letter should also be capitalized. </p>
 </div>
 </div>
@@ -265,7 +265,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="plusminus-operators">plus/minus operators<a class="headerlink" href="#plusminus-operators" title="Permanent link">&para;</a></h4>
+<h3 id="plusminus-operators">plus/minus operators<a class="headerlink" href="#plusminus-operators" title="Permanent link">&para;</a></h3>
 <p>In Python we cannot have variables embedded with <code>+</code> or <code>-</code>, but we may still need these symbols to represent, say ionization or simulation time step. The table below shows how we map from (part of) a variable name to its corresponding latex output.</p>
 </div>
 </div>
@@ -332,6 +332,68 @@
 <div class="output_area">
 <div class="output_latex output_subarea output_execute_result">
 \begin{equation}\operatorname{x_{i+1}}{\left(x_{i} \right)} = 0.9 x_{i}\end{equation} \begin{equation}\operatorname{O^{-}}{\left(e,h \right)} = e^{- h}\end{equation} \begin{equation}\operatorname{O\left (3P\right )}{\left(t \right)} = t\end{equation} \begin{equation}\operatorname{{f}'}{\left(x \right)} = x\end{equation}
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="bold-font">Bold font<a class="headerlink" href="#bold-font" title="Permanent link">&para;</a></h3>
+<p>Use the <code>bm</code> suffix to make a variable bold face</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">Kamodo</span><span class="p">(</span><span class="n">Gbm</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\boldsymbol{G}{\left(x \right)} = x\end{equation} \begin{equation}g{\left(y \right)} = y\end{equation}
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="vectors">Vectors<a class="headerlink" href="#vectors" title="Permanent link">&para;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use the <code>vec</code> suffix to place <script type="math/tex">\vec{}</script> above the preceding symbol. The <script type="math/tex">\hat{}</script> symbol works similarly.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">Kamodo</span><span class="p">(</span><span class="n">fvec</span><span class="o">=</span><span class="s1">&#39;-rvec&#39;</span><span class="p">,</span> <span class="n">bhat</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\vec{f}{\left(\vec{r} \right)} = - \vec{r}\end{equation} \begin{equation}\hat{b}{\left(x \right)} = x\end{equation}
 </div>
 </div>
 </div>
