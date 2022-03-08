@@ -211,7 +211,13 @@ kwargs: {arg: values} to pass to registered function
 indexing: determines order by which 2d matrices are given</p></div>
 <div class="autodoc-signature"><code><strong>to_latex</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">keys=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">mode='equation'</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"><p>Generate list of LaTeX-formated formulas</p>
-<p>mode(optional): equation(default) wrap formulas in egin{equation} ... \end{equation}. Use mode='inline' for <script type="math/tex; mode=display"> ... </script></p>
+<p>mode(optional): equation(default) how to wrap formulas:
+    mode = 'equation': wraps formulas in
+        begin{equation} ... end{equation}.</p>
+<div class="codehilite"><pre><span></span><code>mode=&#39;inline&#39;: wraps formulas in
+    <script type="math/tex; mode=display"> ... </script>
+</code></pre></div>
+
 <p>Note: Upon registeration, each function should have a <em>repr_latex</em> method.</p></div>
 <div class="autodoc-signature"><code><strong><em>repr_latex</em></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"><p>Provide notebook rendering of formulas (called automatically by jupyter notebooks</p></div>
