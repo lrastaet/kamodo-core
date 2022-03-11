@@ -197,187 +197,6 @@
 
 
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped="scoped">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>plot_type</th>
-      <th>function</th>
-    </tr>
-    <tr>
-      <th>out_shape</th>
-      <th>arg_shapes</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-<tbody>
-    <tr>
-      <th>(1,)</th>
-      <th>((N, M), (N, M), (N, M))</th>
-      <td>3d-parametric</td>
-      <td>kamodo.plotting.surface</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">(N,)</th>
-      <th>((N,),)</th>
-      <td>1d-line</td>
-      <td>kamodo.plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N,), (N,))</th>
-      <td>2d-line-scalar</td>
-      <td>kamodo.plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N,), (N,), (N,))</th>
-      <td>3d-line-scalar</td>
-      <td>kamodo.plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N, 3),)</th>
-      <td>3d scatter</td>
-      <td>kamodo.plotting.scatter_plot</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">(N, 2)</th>
-      <th>((N,),)</th>
-      <td>2d-line</td>
-      <td>kamodo.plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N, 2),)</th>
-      <td>2d-vector</td>
-      <td>kamodo.plotting.vector_plot</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">(N, 3)</th>
-      <th>((N,),)</th>
-      <td>3d-line</td>
-      <td>kamodo.plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N, 3),)</th>
-      <td>3d-vector</td>
-      <td>kamodo.plotting.vector_plot</td>
-    </tr>
-    <tr>
-      <th>((M,), (M,), (M,))</th>
-      <td>3d-tri-surface</td>
-      <td>kamodo.plotting.tri_surface_plot</td>
-    </tr>
-    <tr>
-      <th>(N, N)</th>
-      <th>((N,), (N,))</th>
-      <td>2d-contour</td>
-      <td>kamodo.plotting.contour_plot</td>
-    </tr>
-    <tr>
-      <th rowspan="7" valign="top">(N, M)</th>
-      <th>((N,), (M,))</th>
-      <td>2d-contour</td>
-      <td>kamodo.plotting.contour_plot</td>
-    </tr>
-    <tr>
-      <th>((M,), (N,))</th>
-      <td>2d-contour</td>
-      <td>kamodo.plotting.contour_plot</td>
-    </tr>
-    <tr>
-      <th>((N, M), (N, M))</th>
-      <td>2d-contour-skew</td>
-      <td>kamodo.plotting.contour_plot</td>
-    </tr>
-    <tr>
-      <th>((N, M), (N, M), (N, M))</th>
-      <td>3d-parametric-scalar</td>
-      <td>kamodo.plotting.surface</td>
-    </tr>
-    <tr>
-      <th>((1,), (N, M), (N, M))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((N, M), (1,), (N, M))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((N, M), (N, M), (1,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">(N, 1, M)</th>
-      <th>((N,), (1,), (M,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((1,), (N,), (M,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>(1, N, M)</th>
-      <th>((N,), (1,), (M,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">(N, M, 1)</th>
-      <th>((1,), (N,), (M,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((N,), (1,), (M,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((N,), (M,), (1,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((M,), (N,), (1,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>(N, M, 3)</th>
-      <th>((N,), (M,))</th>
-      <td>image</td>
-      <td>kamodo.plotting.image</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
@@ -406,23 +225,14 @@
 
 
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\operatorname{g_{N}}{\left(x_{N} \right)}[kg] = x_{N}^{2}\end{equation} \begin{equation}f{\left(x_{N} \right)}[g] = 1000 \operatorname{g_{N}}{\left(x_{N} \right)}\end{equation}
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we have defined a function <script type="math/tex">g_N</script> which returns an array of shape <script type="math/tex">N</script>. As input, it takes one argument <script type="math/tex">x_N</script> which also has size <script type="math/tex">N</script>. We also generate a function <script type="math/tex">f</script> which is the same as <script type="math/tex">g_N</script> but with a different units.</p>
+<p>Here we have defined a function <span class="arithmatex">\(g_N\)</span> which returns an array of shape <span class="arithmatex">\(N\)</span>. As input, it takes one argument <span class="arithmatex">\(x_N\)</span> which also has size <span class="arithmatex">\(N\)</span>. We also generate a function <span class="arithmatex">\(f\)</span> which is the same as <span class="arithmatex">\(g_N\)</span> but with a different units.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We could have named the function <script type="math/tex">g</script> instead of <script type="math/tex">g_N</script>. The variable names have no bearing on the resulting plots - only the argument input shapes and output shapes matter.</p>
+<p>We could have named the function <span class="arithmatex">\(g\)</span> instead of <span class="arithmatex">\(g_N\)</span>. The variable names have no bearing on the resulting plots - only the argument input shapes and output shapes matter.</p>
 </div>
 </div>
 </div>
@@ -459,7 +269,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is the graph <script type="math/tex">f(x_n)</script> for <script type="math/tex">x_N \in [-4,3]</script>.</p>
+<p>This is the graph <span class="arithmatex">\(f(x_n)\)</span> for <span class="arithmatex">\(x_N \in [-4,3]\)</span>.</p>
 </div>
 </div>
 </div>
@@ -499,15 +309,6 @@
 
 
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\rho_{N}{\left(t_{N} \right)}[\frac{kg}{m^{3}}] = \lambda{\left(t_{N} \right)}\end{equation}
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -523,7 +324,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this case, we only need to name the variable we wish to plot, because we have already defined a function <script type="math/tex">rho_N(t_N)</script> with a default parameter for <script type="math/tex">t_N</script>. </p>
+<p>In this case, we only need to name the variable we wish to plot, because we have already defined a function <span class="arithmatex">\(rho_N(t_N)\)</span> with a default parameter for <span class="arithmatex">\(t_N\)</span>. </p>
 </div>
 </div>
 </div>
@@ -559,7 +360,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="2-d-parametric-charts">2-D Parametric charts<a class="headerlink" href="#2-d-parametric-charts" title="Permanent link">&para;</a></h2>
-<p>For 2-D Plots, the output function must have input shape <script type="math/tex">(N,1)</script> and output shape <script type="math/tex">(N,2)</script>.</p>
+<p>For 2-D Plots, the output function must have input shape <span class="arithmatex">\((N,1)\)</span> and output shape <span class="arithmatex">\((N,2)\)</span>.</p>
 </div>
 </div>
 </div>
@@ -582,20 +383,11 @@
 
 
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\operatorname{x_{N,2}}{\left(\theta_{N} \right)}[cm] = \lambda{\left(\theta_{N} \right)}\end{equation}
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here, we again provide a default array for <script type="math/tex">\theta_N</script> so the end user does not need to:</p>
+<p>Here, we again provide a default array for <span class="arithmatex">\(\theta_N\)</span> so the end user does not need to:</p>
 </div>
 </div>
 </div>
@@ -628,7 +420,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For 3-D parametric curves, the output function must have input shape <script type="math/tex">(N,1)</script> and output shape <script type="math/tex">(N,3)</script>.</p>
+<p>For 3-D parametric curves, the output function must have input shape <span class="arithmatex">\((N,1)\)</span> and output shape <span class="arithmatex">\((N,3)\)</span>.</p>
 </div>
 </div>
 </div>
@@ -652,15 +444,6 @@
 
 
 
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\operatorname{x_{N,3}}{\left(t_{N} \right)}[km] = \lambda{\left(t_{N} \right)}\end{equation}
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -709,15 +492,6 @@
 
 
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\operatorname{f_{N}}{\left(x_{N},y_{N},z_{N} \right)}[kg] = \lambda{\left(x_{N},y_{N},z_{N} \right)}\end{equation}
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -742,8 +516,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="vector-fields">Vector fields<a class="headerlink" href="#vector-fields" title="Permanent link">&para;</a></h1>
-<p>Kamodo generates a 2-d vector (quiver) plot for functions of one variable, if both the input and output have shape (N,2). The input positions are assumed to be <script type="math/tex">x</script>,<script type="math/tex">y</script> and the output vectors are assumed to be <script type="math/tex">v_x</script>, <script type="math/tex">v_y</script>
-</p>
+<p>Kamodo generates a 2-d vector (quiver) plot for functions of one variable, if both the input and output have shape (N,2). The input positions are assumed to be <span class="arithmatex">\(x\)</span>,<span class="arithmatex">\(y\)</span> and the output vectors are assumed to be <span class="arithmatex">\(v_x\)</span>, <span class="arithmatex">\(v_y\)</span></p>
 </div>
 </div>
 </div>
@@ -767,15 +540,6 @@
 
 
 
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\vec{f}_{N,2}{\left(\vec{r}_{N,2} \right)}[cm] = \lambda{\left(\vec{r}_{N,2} \right)}\end{equation}
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -825,15 +589,6 @@
 
 
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\vec{f}_{N,2}{\left(\vec{r}_{N,2} \right)} = \lambda{\left(\vec{r}_{N,2} \right)}\end{equation}
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -880,15 +635,6 @@
 
 
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\vec{f}_{N,3}{\left(\vec{r}_{N,3} \right)} = \lambda{\left(\vec{r}_{N,3} \right)}\end{equation}
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -934,15 +680,6 @@
 
 
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\operatorname{f_{N,M}}{\left(x_{N},y_{M} \right)}[cm^{2}] = \lambda{\left(x_{N},y_{M} \right)}\end{equation}
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -966,7 +703,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Since <script type="math/tex">x_N</script> and <script type="math/tex">y_M</script> have differnt sizes, we could have used <code>indexing=ij</code> as an argument to meshgrid and kamodo would have produced the same figure - Kamodo swaps the ordering where appropriate. In the event that <em>both</em> arguments have the same size, we can pass an <code>indexing</code> argument as an option to the plot function.</p>
+<p>Since <span class="arithmatex">\(x_N\)</span> and <span class="arithmatex">\(y_M\)</span> have differnt sizes, we could have used <code>indexing=ij</code> as an argument to meshgrid and kamodo would have produced the same figure - Kamodo swaps the ordering where appropriate. In the event that <em>both</em> arguments have the same size, we can pass an <code>indexing</code> argument as an option to the plot function.</p>
 </div>
 </div>
 </div>
@@ -985,15 +722,6 @@
 
 
 
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\operatorname{f_{NN}}{\left(x_{N},y_{N} \right)}[cm^{2}] = \lambda{\left(x_{N},y_{N} \right)}\end{equation}
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -1043,15 +771,6 @@
 
 
 
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\operatorname{f_{NM}}{\left(x_{NM},y_{NM} \right)}[cm^{2}] = \lambda{\left(x_{NM},y_{NM} \right)}\end{equation}
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -1108,15 +827,6 @@
 
 
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}p{\left(x_{NM},y_{NM},z_{NM} \right)}[cm] = \lambda{\left(x_{NM},y_{NM},z_{NM} \right)}\end{equation}
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1169,15 +879,6 @@
 
 
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\operatorname{h_{NM}}{\left(x_{NM},y_{NM},z_{NM} \right)}[cm] = \lambda{\left(x_{NM},y_{NM},z_{NM} \right)}\end{equation}
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1202,7 +903,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="map-to-plane">Map-to-plane<a class="headerlink" href="#map-to-plane" title="Permanent link">&para;</a></h2>
-<p>We often need to produce slices through a volumetric grid of data. This may be accomplished through the use of volumetric grid interpolators equipped with default values for each of the input arguments. Suppose such a function has default input arguments of size (L), (M), (N), and output shape (L,M,N), then a cartesian plane will be generated if the user overrides one of these defaults (e.g. setting <script type="math/tex">L = 1</script>).</p>
+<p>We often need to produce slices through a volumetric grid of data. This may be accomplished through the use of volumetric grid interpolators equipped with default values for each of the input arguments. Suppose such a function has default input arguments of size (L), (M), (N), and output shape (L,M,N), then a cartesian plane will be generated if the user overrides one of these defaults (e.g. setting <span class="arithmatex">\(L = 1\)</span>).</p>
 </div>
 </div>
 </div>
@@ -1224,15 +925,6 @@
 
 
 
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\operatorname{f_{LMN}}{\left(x_{L},y_{M},z_{N} \right)}[\frac{g}{cm^{3}}] = \lambda{\left(x_{L},y_{M},z_{N} \right)}\end{equation}
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -1303,15 +995,6 @@
 
 
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\rho_{N}{\left(t_{N} \right)}[\frac{kg}{m^{3}}] = \lambda{\left(t_{N} \right)}\end{equation} \begin{equation}\operatorname{p_{N}}{\left(t_{N} \right)}[nPa] = \lambda{\left(t_{N} \right)}\end{equation}
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1369,15 +1052,6 @@
 
 
 
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_latex output_subarea output_execute_result">
-\begin{equation}\operatorname{g_{LMN}}{\left(x_{L},y_{M},z_{N} \right)}[\frac{g}{cm^{3}}] = \lambda{\left(x_{L},y_{M},z_{N} \right)}\end{equation} \begin{equation}\operatorname{g_{LMN}}{\left(x_{L},y_{M},z_{N} \right)}[\frac{g}{cm^{3}}] = \lambda{\left(x_{L},y_{M},z_{N} \right)}\end{equation}
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">

@@ -81,8 +81,28 @@
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">API</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#kamodo">Kamodo</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#initialization">Initialization</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#plotting">Plotting</a>
+    <li class="toctree-l3"><a class="reference internal" href="#registering-functions">Registering functions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#retrieving-functions">Retrieving functions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#evaluation">Evaluation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#plotting">Plotting</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#single-function-plots">single function plots</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#multi-function-plots">multi-function plots</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#latex-rendering">LaTeX rendering</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#plotting_1">Plotting</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#plot-types">Plot types</a>
     </li>
@@ -172,63 +192,284 @@
 <h2 id="kamodo">Kamodo<a class="headerlink" href="#kamodo" title="Permanent link">&para;</a></h2>
 <div class="autodoc">
 <div class="autodoc-signature"><em>class </em><code>kamodo.<strong>Kamodo</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Kamodo base class demonstrating common API for space weather models
-This API provides access to space weather fields and their properties through:
-    interpolation of variables at user-defined points
-    unit conversions
-    coordinate transformations specific to space weather domains
-Required methods that have not been implemented in child classes
-will raise a NotImplementedError</p></div>
+<div class="autodoc-docstring"><p>Kamodo base class demonstrating common API for scientific resources.</p>
+<p>This API provides access to scientific fields and their properties through:</p>
+<ul>
+<li>Interpolation of variables at user-defined points</li>
+<li>Automatic unit conversions</li>
+<li>Function composition convenient for coordinate transformations and data pipelining</li>
+</ul>
+<p>Note: While intended for with space weather applications, the kamodo base class
+was designed to be as generic as possible, and should be applicable to a wide range
+of scientific domains and disciplines.</p></div>
+</div>
+<h3 id="initialization">Initialization<a class="headerlink" href="#initialization" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><em>class </em><code>kamodo.<strong>Kamodo</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-members">
 <div class="autodoc-signature"><code><strong><strong>init</strong></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Base initialization method
-Args:
-    param1 (str, optional): Filename of datafile to interpolate from</p></div>
+<div class="autodoc-docstring"><p>Initialize Kamodo object with functions or by keyword</p>
+<p><strong> Inputs </strong></p>
+<ul>
+<li>
+<p><strong> funcs </strong> - <em>(optional)</em> list of expressions to register in f(x)=x format</p>
+</li>
+<li>
+<p><strong> kwargs </strong> - <em>(optional)</em> key,value pairs of functions to register</p>
+<ul>
+<li>key - left-hand-side symbol</li>
+<li>value - can be one of:<ul>
+<li>latex or python expression str e.g. "x^2-x-1"</li>
+<li>kamodofied function with appropriate .meta and .data attributers (see @kamodofy)</li>
+<li>lambda function (having no meta or data attributes)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong> verbose </strong> - <em>(optional)</em> (<code>default=False</code>) flag to turn on all debugging print statements</p>
+</li>
+</ul>
+<p><strong> returns </strong> - dictionary-like kamodo object of (symbol, function) pairs</p>
+<p>usage:</p>
+<div class="codehilite"><pre><span></span><code>    <span class="n">kobj</span> <span class="o">=</span> <span class="n">Kamodo</span><span class="p">(</span>
+        <span class="s1">&#39;f(x[cm])[kg/m^3]=x^2-x-1&#39;</span><span class="p">,</span> <span class="c1"># full expressions with units</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="n">kamodofy</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;cm^2&#39;</span><span class="p">),</span> <span class="c1"># kamodofied functions</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="s1">&#39;sin(x)&#39;</span><span class="p">,</span> <span class="c1"># key-value expressions</span>
+        <span class="p">)</span>
+</code></pre></div></div>
+</div>
+</div>
+<h3 id="registering-functions">Registering functions<a class="headerlink" href="#registering-functions" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="autodoc-signature"><em>class </em><code>kamodo.<strong>Kamodo</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-members">
 <div class="autodoc-signature"><code><strong><strong>setitem</strong></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">sym_name</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">input_expr</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Assigns a function or expression to a new symbol,
-performs unit conversion where appropriate</p></div>
-<div class="autodoc-signature"><code><strong><strong>getitem</strong></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">key</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Given a symbol string, retrieves the corresponding function.</p></div>
-<div class="autodoc-signature"><code><strong><strong>getattr</strong></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">name</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Retrieves a given function as an attribute.</p>
-<p>Usage:
-To evaluate function <script type="math/tex">f(x)</script> at [1,2,3]:</p>
-<div class="codehilite"><pre><span></span><code>k.f([1,2,3])
-</code></pre></div></div>
-<div class="autodoc-signature"><code><strong>plot</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*variables</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">plot_partial={}</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**figures</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Generates a plotly figure from multiple variables and keyword arguments</p>
-<p>variable: the name of a previously registered function
-figures: {variable: {arg: values}} to pass to registered function</p>
-<p>Usage:</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">k</span>.<span class="nv">plot</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">f</span><span class="s1">&#39;</span><span class="ss">)</span> # <span class="nv">plots</span> <span class="nv">f</span> <span class="nv">using</span> <span class="nv">default</span> <span class="nv">arguments</span> <span class="k">for</span> <span class="nv">f</span>
-
-<span class="nv">k</span>.<span class="nv">plot</span><span class="ss">(</span><span class="nv">f</span><span class="o">=</span>{<span class="nv">x</span>:[<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>]}, <span class="nv">g</span><span class="o">=</span>{<span class="nv">x</span>{<span class="o">-</span><span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">4</span>}}<span class="ss">)</span> # <span class="nv">plots</span> <span class="nv">f</span> <span class="nv">at</span> <span class="nv">x</span><span class="o">=</span>[<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>] <span class="nv">and</span> <span class="nv">g</span> <span class="nv">at</span> [<span class="o">-</span><span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>]
-</code></pre></div></div>
-<div class="autodoc-signature"><code><strong>figure</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">variable</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">indexing='ij'</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Generates a plotly figure for a single variable and keyword arguments</p>
-<p>variable: the name of a previously registered function
-kwargs: {arg: values} to pass to registered function
-indexing: determines order by which 2d matrices are given</p></div>
-<div class="autodoc-signature"><code><strong>to_latex</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">keys=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">mode='equation'</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Generate list of LaTeX-formated formulas</p>
-<p>mode(optional): equation(default) how to wrap formulas:
-    mode = 'equation': wraps formulas in
-        begin{equation} ... end{equation}.</p>
-<div class="codehilite"><pre><span></span><code>mode=&#39;inline&#39;: wraps formulas in
-    <script type="math/tex; mode=display"> ... </script>
+<div class="autodoc-docstring"><p>Assigns a function or expression to a new symbol, performing
+automatic function composition and inserting unit conversions where appropriate.</p>
+<ul>
+<li>
+<p><strong> sym_name </strong> - function symbol to associate with right-hand-side in one of the following formats:</p>
+<ul>
+<li>f - a lone fuction symbol (alphabetic argument ordering)</li>
+<li>f(z,x,y) - explicit argument ordering</li>
+<li>f[kg] - output unit assignment</li>
+<li>f(x[cm])[kg] - output and input unit assignment</li>
+</ul>
+</li>
+<li>
+<p><strong> input_expr </strong> - rhs string or kamodofied function, one of:</p>
+<ul>
+<li>right-hand-side expression: python or latex str (e.g.<code>x^2-x-1</code>)</li>
+<li>kamodofied function with appropriate .meta and .data attributers (see @kamodofy)</li>
+<li>lambda function (having no meta or data attributes)</li>
+</ul>
+</li>
+</ul>
+<p>Raises:
+    - NameError when left-hand-side units incompatible with right-hand-side expression</p>
+<p>returns: None</p>
+<p>usage:</p>
+<p>Setting left-hand-side units will automatically trigger unit conversion</p>
+<div class="codehilite"><pre><span></span><code><span class="n">kobj</span> <span class="o">=</span> <span class="n">Kamodo</span><span class="p">()</span>
+<span class="n">kobj</span><span class="p">[</span><span class="s1">&#39;radius[m]&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>
+<span class="n">kobj</span><span class="p">[</span><span class="s1">&#39;area[cm^2]&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;pi * radius^2&#39;</span>
+<span class="n">kobj</span>
 </code></pre></div>
 
-<p>Note: Upon registeration, each function should have a <em>repr_latex</em> method.</p></div>
-<div class="autodoc-signature"><code><strong><em>repr_latex</em></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Provide notebook rendering of formulas (called automatically by jupyter notebooks</p></div>
-<div class="autodoc-signature"><code><strong>detail</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Constructs a pandas dataframe from signatures</p></div>
+<p>The above <code>kobj</code> will render in a Jupyter notebook like this:</p>
+<div class="arithmatex"><script type="math/tex; mode=display">\operatorname{radius}{\left(r \right)}[m] = r</script></div>
+<div class="arithmatex"><script type="math/tex; mode=display">\operatorname{area}{\left(r \right)}[cm^{2}] = 10000 \pi \operatorname{radius}^{2}{\left(r \right)}</script></div>
+<p>Kamodo will raise an error if left-hand-side units are incompatible with the right-hand-side expression</p>
+<div class="codehilite"><pre><span></span><code><span class="n">kobj</span> <span class="o">=</span> <span class="n">Kamodo</span><span class="p">()</span>
+<span class="n">kobj</span><span class="p">[</span><span class="s1">&#39;area[cm^2]&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;x^2&#39;</span> <span class="c1"># area has units of cm^2</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">kobj</span><span class="p">[</span><span class="s1">&#39;g(x)[kg]&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;area&#39;</span> <span class="c1"># mass not compatible with square length</span>
+<span class="k">except</span> <span class="ne">NameError</span> <span class="k">as</span> <span class="n">m</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</code></pre></div>
+
+<p>output:</p>
+<div class="arithmatex"><script type="math/tex; mode=display">\text{cannot convert area(x) [centimeter**2] length**2 to g(x)[kilogram] mass}</script></div></div>
+</div>
+</div>
+<h3 id="retrieving-functions">Retrieving functions<a class="headerlink" href="#retrieving-functions" title="Permanent link">&para;</a></h3>
+<p>Registered functions may be accessed via dictionary or attribute syntax.</p>
+<div class="autodoc">
+<div class="autodoc-signature"><em>class </em><code>kamodo.<strong>Kamodo</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-members">
+<div class="autodoc-signature"><code><strong><strong>getitem</strong></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">key</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Given a symbol string, retrieves the corresponding function.</p>
+<p>input: <strong>key</strong> - string or function symbol</p>
+<p><strong> returns</strong>: the associated function</p>
+<p><strong> usage </strong>:</p>
+<p>Rretrieval by function name:</p>
+<div class="codehilite"><pre><span></span><code>    <span class="n">kobj</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;x^2-x-1&#39;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">kobj</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">]</span>
+    <span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># returns 5</span>
+</code></pre></div>
+
+<p>It is also possible to retreive by function symbol:</p>
+<div class="codehilite"><pre><span></span><code>    <span class="kn">from</span> <span class="nn">kamodo</span> <span class="kn">import</span> <span class="n">sympify</span>
+    <span class="n">fsymbol</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)</span> <span class="c1"># converts str to symbol</span>
+
+    <span class="n">kobj</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;x^2-x-1&#39;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">kobj</span><span class="p">[</span><span class="n">fsymbol</span><span class="p">]</span>
+    <span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># returns 5</span>
+</code></pre></div></div>
+<div class="autodoc-signature"><code><strong><strong>getattr</strong></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">name</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Retrieves a given function as an attribute.</p>
+<p><strong>input</strong> - <strong>name</strong> of function to retrieve</p>
+<p><strong>returns</strong> the associated function</p>
+<p>Usage:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">k</span> <span class="o">=</span> <span class="n">Kamodo</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="s1">&#39;x^2-x-1&#39;</span><span class="p">)</span>
+<span class="n">k</span><span class="o">.</span><span class="n">f</span>
+</code></pre></div>
+
+<p>The above renders as follows in a jupyter notebook</p>
+<p><span class="arithmatex"><span class="arithmatex">\(f{\left(x \right)} = x^{2} - x - 1\)</span></span></p></div>
+</div>
+</div>
+<h3 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link">&para;</a></h3>
+<p>Function evaluation may be performed either by keyword or attribute syntax:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">k</span> <span class="o">=</span> <span class="n">Kamodo</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="s1">&#39;x^2-x-1&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">k</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="n">k</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">](</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+
+<p>For closed-form expressions, kamodo uses the highly optimized <a href="https://numexpr.readthedocs.io/projects/NumExpr3/en/latest/intro.html">numexpr</a> library if available and will fall back to numpy otherwise:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">33000111</span><span class="p">)</span>
+<span class="n">k</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Programmatic evaluation is also possible:</p>
+<div class="autodoc">
+<div class="autodoc-signature"><em>class </em><code>kamodo.<strong>Kamodo</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-members">
 <div class="autodoc-signature"><code><strong>evaluate</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">variable</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*args</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>evaluates the variable.</p>
-<p>If the variable is not present, try to parse it as a semicolon-delimited list</p></div>
+<div class="autodoc-docstring"><p>Evaluate a given function variable using kwargs.</p>
+<p>If the variable is not present, try to parse it as an equation and evaluate the expression.</p>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>variable - str:<ul>
+<li>function string name to evaluate</li>
+<li>semicolon delmitted list of equations, the last of which will be evaluated</li>
+</ul>
+</li>
+<li>args - not presently used</li>
+<li>kwargs - key-word arguments passed to function (required)</li>
+</ul>
+<p><strong> returns </strong>: dictionary of input kwargs and output {variable: self.variable(**kwargs)}</p>
+<p><strong> usage </strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">k</span> <span class="o">=</span> <span class="n">Kamodo</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="s1">&#39;x+y&#39;</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">4</span><span class="p">)[</span><span class="s1">&#39;f&#39;</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">k</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="n">result</span>
+<span class="k">assert</span> <span class="n">k</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="s1">&#39;g=f+3&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">4</span><span class="p">)[</span><span class="s1">&#39;g&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">result</span><span class="o">+</span><span class="mi">3</span>
+<span class="k">assert</span> <span class="n">k</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="s1">&#39;g=f+3;h=g+2&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">4</span><span class="p">)[</span><span class="s1">&#39;h&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">result</span><span class="o">+</span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span>
+</code></pre></div></div>
 </div>
 </div>
-<h2 id="plotting">Plotting<a class="headerlink" href="#plotting" title="Permanent link">&para;</a></h2>
+<h3 id="plotting">Plotting<a class="headerlink" href="#plotting" title="Permanent link">&para;</a></h3>
+<h4 id="single-function-plots">single function plots<a class="headerlink" href="#single-function-plots" title="Permanent link">&para;</a></h4>
+<p>For plotting single variables, the <code>figure</code> method is most appropriate</p>
+<div class="autodoc">
+<div class="autodoc-signature"><em>class </em><code>kamodo.<strong>Kamodo</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-members">
+<div class="autodoc-signature"><code><strong>figure</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">variable</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">indexing='ij'</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Generates a plotly figure for a single variable and keyword arguments</p>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>variable: the name of a previously registered function</li>
+<li>kwargs: {arg: values} to pass to registered function</li>
+<li>indexing: determines order by which 2d matrices are given (affects contour_plot, carpet_plot, and plane)</li>
+</ul>
+<p><strong> returns </strong>: plotly <a href="https://plotly.com/python/figure-structure/">figure</a> (dict-like)</p>
+<p>raises: SyntaxError if variable not found</p></div>
+</div>
+</div>
+<h4 id="multi-function-plots">multi-function plots<a class="headerlink" href="#multi-function-plots" title="Permanent link">&para;</a></h4>
+<p>For multiple functions, the <code>plot</code> method is more convenient</p>
+<div class="autodoc">
+<div class="autodoc-signature"><em>class </em><code>kamodo.<strong>Kamodo</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-members">
+<div class="autodoc-signature"><code><strong>plot</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*variables</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">plot_partial={}</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**figures</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Generates a plotly figure from multiple variables and keyword arguments</p>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>variable: the name of a previously registered function</li>
+<li>figures: dict {variable: {arg: values}} to pass to registered function</li>
+</ul>
+<p><strong> returns </strong>: plotly <a href="https://plotly.com/python/figure-structure/">figure</a> (dict-like).
+When run in a jupyter notebook, an inline plotly figure will be displayed.</p>
+<p><strong> raises </strong>:</p>
+<ul>
+<li>TypeError when required function arguments are not specified</li>
+<li>KeyError when no plotting function can be associated with input/output shapes</li>
+</ul>
+<p><strong> usage </strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">k</span> <span class="o">=</span> <span class="n">Kamodo</span><span class="p">(</span>
+    <span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]):</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">g</span><span class="o">=</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">)</span>
+
+<span class="n">k</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)</span> <span class="c1"># plots f using default arguments for f</span>
+
+<span class="n">k</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]},</span> <span class="n">g</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">{</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}})</span> <span class="c1"># plots f at x=[3,4,5] and g at [-2,3,4]</span>
+</code></pre></div></div>
+</div>
+</div>
+<h3 id="latex-rendering">LaTeX rendering<a class="headerlink" href="#latex-rendering" title="Permanent link">&para;</a></h3>
+<p>The following methods allow Kamodo to integrate seemlessly with modern publication workflows. This includes support for LaTeX rendering within jupyter notebooks, LaTeX printing for manuscript preparation, and a high-level <code>detail</code> summary of registered functions.</p>
+<div class="autodoc">
+<div class="autodoc-signature"><em>class </em><code>kamodo.<strong>Kamodo</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">*funcs</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-members">
+<div class="autodoc-signature"><code><strong><em>repr_latex</em></strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Provides notebook rendering of kamodo object's registered functions.</p>
+<p><strong> inputs </strong> - N/A</p>
+<p><strong> returns </strong> latex string - obtained  from <code>to_latex</code> method</p>
+<p>Usage:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">k</span> <span class="o">=</span> <span class="n">Kamodo</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="s1">&#39;x^2-x-1&#39;</span><span class="p">)</span>
+<span class="n">k</span>
+</code></pre></div>
+
+<p>When placed on a line by itself, the above object will be rendered by jupyter notebooks like this:</p>
+<div class="arithmatex"><script type="math/tex; mode=display">\begin{equation}f{\left(x \right)} = x^{2} - x - 1\end{equation}</script></div>
+<p>More on the <em>repr_latex</em> method can be found <a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html">here</a></p>
+<p>Note: Registered functions are also equiped with their own <code><em>repr_latex</em></code> method.</p></div>
+<div class="autodoc-signature"><code><strong>to_latex</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">keys=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">mode='equation'</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Generate list of LaTeX-formated formulas</p>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>
+<p>keys - (optional) list(str) of registered functions to generate LaTeX from</p>
+</li>
+<li>
+<p>mode - (optional) string determines to wrap formulas</p>
+<ul>
+<li>
+<p>'equation' (default) wraps formulas in <code>begin{equation} ... end{equation}</code></p>
+</li>
+<li>
+<p>'inline': wraps formulas in dollar signs</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong> returns </strong>: LaTeX-formated string</p>
+<p>Note: This function does not need to be for rendering in jupyter. See <em>repr_latex</em> method.</p></div>
+<div class="autodoc-signature"><code><strong>detail</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Constructs a pandas dataframe from signatures</p>
+<p><strong> inputs </strong> - N/A</p>
+<p><strong> returns </strong> - pandas dataframe</p>
+<p>usage:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">k</span> <span class="o">=</span> <span class="n">Kamodo</span><span class="p">(</span><span class="s1">&#39;rho(x[cm])[g/cm^3]=x^2&#39;</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="s1">&#39;x+y&#39;</span><span class="p">)</span>
+<span class="n">k</span><span class="o">.</span><span class="n">detail</span><span class="p">()</span>
+</code></pre></div>
+
+<p>outputs:</p>
+<table border="1" class="dataframe">  <thead>    <tr style="text-align: right;">      <th></th>      <th>symbol</th>      <th>units</th>      <th>lhs</th>      <th>rhs</th>      <th>arg_units</th>    </tr>  </thead>  <tbody>    <tr>      <th>rho</th>      <td>rho(x)</td>      <td>g/cm<strong>3</td>      <td>rho(x)</td>      <td>x</strong>2</td>      <td>{'x': 'cm'}</td>    </tr>    <tr>      <th>g</th>      <td>g(x, y)</td>      <td></td>      <td>g</td>      <td>x + y</td>      <td>{}</td>    </tr>  </tbody></table></div>
+</div>
+</div>
+<h2 id="plotting_1">Plotting<a class="headerlink" href="#plotting_1" title="Permanent link">&para;</a></h2>
 <h3 id="plot-types">Plot types<a class="headerlink" href="#plot-types" title="Permanent link">&para;</a></h3>
 <p>As described in <a href="../notebooks/Visualization/">Visualization</a>, Kamodo automatically maps registered functions to certain plot types. All such functions expect the same input variables and return a triplet <code>[trace], chart_type, layout</code> where <code>[trace]</code> is a list of plotly trace objects.</p>
 <div class="autodoc">
@@ -245,10 +486,20 @@ indexing: determines order by which 2d matrices are given</p></div>
 <div class="autodoc-docstring"><ul>
 <li>Generates a 3D scatter plot.</li>
 </ul>
-<p>result: a dictionary of parameters
-titles: a dictionary of titles</p>
-<p>Returns:
-    [trace], chart_type, layout</p></div>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>result: dictionary returned by Kamodo().evaluate</li>
+<li>titles: dictionary holding plot titles</li>
+<li>indexing: str 'ij' or 'xy' determining array order</li>
+<li>verbose: boolean (default False) for debugging</li>
+<li>kwargs: additional arguments specific to plot types</li>
+</ul>
+<p><strong> returns </strong> - tuple:</p>
+<ul>
+<li>traces - list of <a href="https://plotly.com/python/figure-structure/">plotly trace objects</a></li>
+<li>chart_type - str name of this type of plot</li>
+<li>layout - dict-like <a href="https://plotly.com/python/reference/layout/">plotly layout</a></li>
+</ul></div>
 </div>
 <h3 id="line-plot">Line plot<a class="headerlink" href="#line-plot" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
@@ -256,10 +507,20 @@ titles: a dictionary of titles</p>
 <div class="autodoc-docstring"><ul>
 <li>Generates a 1D, 2D or 3D line plot.</li>
 </ul>
-<p>result: a dictionary of parameters
-titles: a dictionary of titles</p>
-<p>Returns:
-    [trace], chart_type, layout</p></div>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>result: dictionary returned by Kamodo().evaluate</li>
+<li>titles: dictionary holding plot titles</li>
+<li>indexing: str 'ij' or 'xy' determining array order</li>
+<li>verbose: boolean (default False) for debugging</li>
+<li>kwargs: additional arguments specific to plot types</li>
+</ul>
+<p><strong> returns </strong> - tuple:</p>
+<ul>
+<li>traces - list of <a href="https://plotly.com/python/figure-structure/">plotly trace objects</a></li>
+<li>chart_type - str name of this type of plot</li>
+<li>layout - dict-like <a href="https://plotly.com/python/reference/layout/">plotly layout</a></li>
+</ul></div>
 </div>
 <h3 id="vector-plot">Vector plot<a class="headerlink" href="#vector-plot" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
@@ -267,10 +528,20 @@ titles: a dictionary of titles</p>
 <div class="autodoc-docstring"><ul>
 <li>Generates a 2D or 3D vector plot.</li>
 </ul>
-<p>result: a dictionary of parameters
-titles: a dictionary of titles</p>
-<p>Returns:
-    [trace], chart_type, layout</p></div>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>result: dictionary returned by Kamodo().evaluate</li>
+<li>titles: dictionary holding plot titles</li>
+<li>indexing: str 'ij' or 'xy' determining array order</li>
+<li>verbose: boolean (default False) for debugging</li>
+<li>kwargs: additional arguments specific to plot types</li>
+</ul>
+<p><strong> returns </strong> - tuple:</p>
+<ul>
+<li>traces - list of <a href="https://plotly.com/python/figure-structure/">plotly trace objects</a></li>
+<li>chart_type - str name of this type of plot</li>
+<li>layout - dict-like <a href="https://plotly.com/python/reference/layout/">plotly layout</a></li>
+</ul></div>
 </div>
 <h3 id="contour-plot">Contour plot<a class="headerlink" href="#contour-plot" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
@@ -278,32 +549,64 @@ titles: a dictionary of titles</p>
 <div class="autodoc-docstring"><ul>
 <li>Generates a 2D contour plot.</li>
 </ul>
-<p>result: a dictionary of parameters
-titles: a dictionary of titles</p>
-<p>returns:
-    [trace], chart_type, layout</p></div>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>result: dictionary returned by Kamodo().evaluate</li>
+<li>titles: dictionary holding plot titles</li>
+<li>indexing: str 'ij' or 'xy' determining array order</li>
+<li>verbose: boolean (default False) for debugging</li>
+<li>kwargs: additional arguments specific to plot types</li>
+</ul>
+<p><strong> returns </strong> - tuple:</p>
+<ul>
+<li>traces - list of <a href="https://plotly.com/python/figure-structure/">plotly trace objects</a></li>
+<li>chart_type - str name of this type of plot</li>
+<li>layout - dict-like <a href="https://plotly.com/python/reference/layout/">plotly layout</a></li>
+</ul></div>
 </div>
 <h3 id="3d-plane">3D Plane<a class="headerlink" href="#3d-plane" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
 <div class="autodoc-signature"><code>kamodo.plotting.<strong>plane</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">result</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">titles</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">indexing='xy'</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">verbose=False</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"><ul>
-<li>Generates a 3D plane plot.</li>
+<li>
+<p>Generates a 3D plane plot.</p>
+</li>
+<li>
+<p>result: dictionary returned by Kamodo().evaluate</p>
+</li>
+<li>titles: dictionary holding plot titles</li>
+<li>indexing: str 'ij' or 'xy' determining array order</li>
+<li>verbose: boolean (default False) for debugging</li>
+<li>kwargs: additional arguments specific to plot types</li>
 </ul>
-<p>result: a dictionary of parameters
-titles: a dictionary of titles</p>
-<p>Returns:
-    [trace], chart_type, layout</p></div>
+<p><strong> returns </strong> - tuple:</p>
+<ul>
+<li>traces - list of <a href="https://plotly.com/python/figure-structure/">plotly trace objects</a></li>
+<li>chart_type - str name of this type of plot</li>
+<li>layout - dict-like <a href="https://plotly.com/python/reference/layout/">plotly layout</a></li>
+</ul></div>
 </div>
 <h3 id="3d-surface">3D Surface<a class="headerlink" href="#3d-surface" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
 <div class="autodoc-signature"><code>kamodo.plotting.<strong>surface</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">result</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">titles</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">verbose=False</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"><ul>
-<li>Generates a 3d surface-scalar or surface plot.</li>
+<li>
+<p>Generates a 3d surface-scalar or surface plot.</p>
+</li>
+<li>
+<p>result: dictionary returned by Kamodo().evaluate</p>
+</li>
+<li>titles: dictionary holding plot titles</li>
+<li>indexing: str 'ij' or 'xy' determining array order</li>
+<li>verbose: boolean (default False) for debugging</li>
+<li>kwargs: additional arguments specific to plot types</li>
 </ul>
-<p>result: a dictionary of parameters
-titles: a dictionary of titles</p>
-<p>Returns:
-    [trace], chart_type, layout</p></div>
+<p><strong> returns </strong> - tuple:</p>
+<ul>
+<li>traces - list of <a href="https://plotly.com/python/figure-structure/">plotly trace objects</a></li>
+<li>chart_type - str name of this type of plot</li>
+<li>layout - dict-like <a href="https://plotly.com/python/reference/layout/">plotly layout</a></li>
+</ul></div>
 </div>
 <h3 id="carpet-plot">Carpet plot<a class="headerlink" href="#carpet-plot" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
@@ -311,32 +614,64 @@ titles: a dictionary of titles</p>
 <div class="autodoc-docstring"><ul>
 <li>Generates a 2D skew (carpet) plot.</li>
 </ul>
-<p>result: a dictionary of parameters
-titles: a dictionary of titles</p>
-<p>returns:
-    [trace], layout</p></div>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>result: dictionary returned by Kamodo().evaluate</li>
+<li>titles: dictionary holding plot titles</li>
+<li>xaxis: dictionary  of {title: latex str}</li>
+<li>yaxis: dictionary  of {title: latex str}</li>
+<li>indexing: str 'ij' or 'xy' determining array order</li>
+<li>kwargs: additional arguments specific to plot types</li>
+</ul>
+<p><strong> returns </strong> - tuple:</p>
+<ul>
+<li>traces - list of <a href="https://plotly.com/python/figure-structure/">plotly trace objects</a></li>
+<li>chart_type - str name of this type of plot</li>
+</ul></div>
 </div>
 <h3 id="triangulated-mesh-plot">Triangulated Mesh plot<a class="headerlink" href="#triangulated-mesh-plot" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
 <div class="autodoc-signature"><code>kamodo.plotting.<strong>tri_surface_plot</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">result</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">titles</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">verbose=False</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"><ul>
-<li>Generates a 3D mesh (tri-surface) plot.</li>
+<li>
+<p>Generates a 3D mesh (tri-surface) plot.</p>
+</li>
+<li>
+<p>result: dictionary returned by Kamodo().evaluate</p>
+</li>
+<li>titles: dictionary holding plot titles</li>
+<li>indexing: str 'ij' or 'xy' determining array order</li>
+<li>verbose: boolean (default False) for debugging</li>
+<li>kwargs: additional arguments specific to plot types</li>
 </ul>
-<p>result: a dictionary of parameters
-titles: a dictionary of titles</p>
-<p>Returns:
-    [trace], chart_type, layout</p></div>
+<p><strong> returns </strong> - tuple:</p>
+<ul>
+<li>traces - list of <a href="https://plotly.com/python/figure-structure/">plotly trace objects</a></li>
+<li>chart_type - str name of this type of plot</li>
+<li>layout - dict-like <a href="https://plotly.com/python/reference/layout/">plotly layout</a></li>
+</ul></div>
 </div>
 <h3 id="image-plot">Image plot<a class="headerlink" href="#image-plot" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
 <div class="autodoc-signature"><code>kamodo.plotting.<strong>image</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">result</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">titles</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">verbose=False</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"><ul>
-<li>Generates a 2D image plot</li>
+<li>
+<p>Generates a 2D image plot</p>
+</li>
+<li>
+<p>result: dictionary returned by Kamodo().evaluate</p>
+</li>
+<li>titles: dictionary holding plot titles</li>
+<li>indexing: str 'ij' or 'xy' determining array order</li>
+<li>verbose: boolean (default False) for debugging</li>
+<li>kwargs: additional arguments specific to plot types</li>
 </ul>
-<p>result: a dictionary of parameters
-titles: a dictionary of titles</p>
-<p>Returns:
-    [trace], chart_type, layout</p></div>
+<p><strong> returns </strong> - tuple:</p>
+<ul>
+<li>traces - list of <a href="https://plotly.com/python/figure-structure/">plotly trace objects</a></li>
+<li>chart_type - str name of this type of plot</li>
+<li>layout - dict-like <a href="https://plotly.com/python/reference/layout/">plotly layout</a></li>
+</ul></div>
 </div>
 <h2 id="decorators">Decorators<a class="headerlink" href="#decorators" title="Permanent link">&para;</a></h2>
 <p>These decorators may also be imported like this</p>
@@ -346,24 +681,34 @@ titles: a dictionary of titles</p>
 <h3 id="kamodofy">kamodofy<a class="headerlink" href="#kamodofy" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
 <div class="autodoc-signature"><code>kamodo.util.<strong>kamodofy</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">_func=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">units=''</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">arg_units=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">data=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">update=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">equation=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">citation=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">hidden_args=[]</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**kwargs</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><ul>
-<li>Adds meta and data attributes to functions for compatibility with Komodo.</li>
-<li>meta is a dictionary containing {units: <str>}.</li>
-<li>data if supplied, set f.data = data, if not supplied, set f.data = f(), assuming it can be called with no arguments.
-  If f cannot be called with no arguments, set f.data = None</li>
+<div class="autodoc-docstring"><p>Adds <code>meta</code> and <code>data</code> attributes to functions for registering with Komodo objects.</p>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>_func: function to wrap</li>
+<li>units: (optional) physical output units</li>
+<li>arg_units: (optional) dictionary { arg : str unit} containing physical input units</li>
+<li>data: if supplied, set f.data = data, if not supplied, set f.data = f(), assuming it can be called with no arguments.
+  If f cannot be called with no arguments, will set f.data = None</li>
+<li>update: name of another function's argument to update (see <a href="../notebooks/Kamodo/#simulation-api">simulation api</a>)</li>
+<li>equation: str representing right-hand-side of the function</li>
+<li>citation: str reference for publication</li>
+<li>hidden_args: arguments of function to hide from latex rendering</li>
+<li>kwargs: other key word arguments</li>
 </ul>
-<p>_func: kamodo function
-units: units for function
-arg_units: arguments units
-data: data for function
-update: updates in function
-equation: equation of the function
-citation: citation of function
-hidden_args: hidden arguments of function
-**kwargs: other key word arguments</p>
-<p>returns : decorator kamodofy</p></div>
-</div>
-<p>Usage:</p>
+<p><strong> returns </strong>: the decorated function with the following attributes</p>
+<ul>
+<li>meta is a dictionary containing<ul>
+<li>units: physical output units (str)</li>
+<li>arg_units: dictionary { arg : str unit}</li>
+<li>equation: latex str representing right-hand-side of the function</li>
+<li>citation: str reference for publication</li>
+<li>hidden: str list of arguments to hide from latex rendering</li>
+</ul>
+</li>
+<li>data: default data representing expected function output for default arguments</li>
+<li>update: name of another function's argument to update</li>
+</ul>
+<p><strong> usage </strong>:</p>
 <div class="codehilite"><pre><span></span><code><span class="nd">@kamodofy</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;kg/cm^2&#39;</span><span class="p">,</span> <span class="n">arg_units</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;cm&#39;</span><span class="p">),</span> <span class="n">citation</span><span class="o">=</span><span class="s1">&#39;Pembroke et. al 2022&#39;</span><span class="p">,</span> <span class="n">hidden_args</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
@@ -382,8 +727,8 @@ hidden_args: hidden arguments of function
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code><span class="go">900</span>
-</code></pre></div>
-
+</code></pre></div></div>
+</div>
 <div class="autodoc">
 <div class="autodoc-signature"><code>kamodo.util.<strong>gridify</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">_func=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">order='A'</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">squeeze=True</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**defaults</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"><ul>

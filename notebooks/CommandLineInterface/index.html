@@ -158,9 +158,8 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="kamodo-cli">Kamodo-CLI<a class="headerlink" href="#kamodo-cli" title="Permanent link">&para;</a></h1>
 <p>The kamodo command-line interface should be installed automatically with pip</p>
-<div class="codehilite"><pre><span></span><code>pip install kamodo
+<div class="highlight"><pre><span></span><code>pip install kamodo
 </code></pre></div>
-
 </div>
 </div>
 </div>
@@ -188,9 +187,8 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Run the command line interface with</p>
-<div class="codehilite"><pre><span></span><code>kamodo &lt;key&gt;.&lt;subkey&gt;=value
+<div class="highlight"><pre><span></span><code>kamodo &lt;key&gt;.&lt;subkey&gt;=value
 </code></pre></div>
-
 <h3 id="instantiation">instantiation<a class="headerlink" href="#instantiation" title="Permanent link">&para;</a></h3>
 <p>To create a simple function ready for evaluation:</p>
 <div class="codehilite"><pre><span></span><code><span class="go">kamodo model.params.f[cm]=x**2</span>
@@ -326,13 +324,9 @@ To create your own configuration, create a config.yaml file in your project's di
 <div class="output_area">
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-<code>mymodel
-Empty DataFrame
-Columns: []
-Index: []
-Empty DataFrame
-Columns: []
-Index: []
+<code>     lhs   rhs symbol units
+f(x)   f  x**2   f(x)    cm
+\begin{equation}f{\left(x \right)} [cm] = x^{2}\end{equation}
 </code>
 </pre>
 </div>
@@ -404,9 +398,8 @@ Index: []
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="tab-completion">tab completion<a class="headerlink" href="#tab-completion" title="Permanent link">&para;</a></h3>
 <p>Kamodo supports tab completion for bash. To set up bash tab completion, run the following:</p>
-<div class="codehilite"><pre><span></span><code>eval &quot;$(kamodo -sc install=bash)&quot;
+<div class="highlight"><pre><span></span><code>eval &quot;$(kamodo -sc install=bash)&quot;
 </code></pre></div>
-
 </div>
 </div>
 </div>
