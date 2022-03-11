@@ -193,6 +193,29 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-2.4.2.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
@@ -270,6 +293,15 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\vec{B}{\left(\vec{r} \right)} = \lambda{\left(\vec{r} \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
@@ -326,6 +358,15 @@
 
 
 
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\vec{B}{\left(\vec{r} \right)} = \lambda{\left(\vec{r} \right)}\end{equation} \begin{equation}\hat{n}{\left(\vec{y} \right)} = \hat{n}(\vec{y}) = \vec{y}/\sqrt{\vec{y} \cdot \vec{y}}\end{equation} \begin{equation}\hat{b}{\left(\vec{r} \right)} = \hat{n}{\left(\vec{B}{\left(\vec{r} \right)} \right)}\end{equation}
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -407,6 +448,15 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_latex output_subarea output_execute_result">
+\begin{equation}\vec{B}{\left(\vec{r} \right)} = \lambda{\left(\vec{r} \right)}\end{equation} \begin{equation}\hat{n}{\left(\vec{y} \right)} = \hat{n}(\vec{y}) = \vec{y}/\sqrt{\vec{y} \cdot \vec{y}}\end{equation} \begin{equation}\hat{b}{\left(\vec{r} \right)} = \hat{n}{\left(\vec{B}{\left(\vec{r} \right)} \right)}\end{equation} \begin{equation}\vec{s}{\left(s \right)} = \lambda{\left(s \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
@@ -433,6 +483,80 @@
 
 
 
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <th>integral</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th rowspan="5" valign="top">0.0</th>
+      <th>-6.610169</th>
+      <td>-0.347547</td>
+      <td>-0.347547</td>
+      <td>-0.924155</td>
+    </tr>
+    <tr>
+      <th>-6.101695</th>
+      <td>-0.615886</td>
+      <td>-0.615886</td>
+      <td>-1.261575</td>
+    </tr>
+    <tr>
+      <th>-5.593220</th>
+      <td>-0.922735</td>
+      <td>-0.922735</td>
+      <td>-1.525472</td>
+    </tr>
+    <tr>
+      <th>-5.084746</th>
+      <td>-1.256963</td>
+      <td>-1.256963</td>
+      <td>-1.713145</td>
+    </tr>
+    <tr>
+      <th>-4.576271</th>
+      <td>-1.608411</td>
+      <td>-1.608411</td>
+      <td>-1.822192</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -461,6 +585,19 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>
+<code>array([[-3.14159265, -3.14159265,  1.        ],
+       [-1.88495559, -3.14159265,  1.        ],
+       [-0.62831853, -3.14159265,  1.        ]])</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
@@ -479,6 +616,19 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>
+<code>array([[-3.14159265, -3.14159265,  1.        ],
+       [-1.88495559, -3.14159265,  1.        ],
+       [-0.62831853, -3.14159265,  1.        ]])</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
@@ -496,6 +646,93 @@
 
 
 
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <th>integral</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th rowspan="5" valign="top">0.0</th>
+      <th>-6.000</th>
+      <td>-0.674502</td>
+      <td>-0.674502</td>
+      <td>-1.320504</td>
+    </tr>
+    <tr>
+      <th>-5.000</th>
+      <td>-1.314574</td>
+      <td>-1.314574</td>
+      <td>-1.737228</td>
+    </tr>
+    <tr>
+      <th>0.000</th>
+      <td>-3.141593</td>
+      <td>-3.141593</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>5.000</th>
+      <td>-0.120606</td>
+      <td>-0.120606</td>
+      <td>0.491892</td>
+    </tr>
+    <tr>
+      <th>6.000</th>
+      <td>0.125472</td>
+      <td>0.125472</td>
+      <td>-0.393292</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">4.0</th>
+      <th>4.000</th>
+      <td>0.094223</td>
+      <td>-0.157038</td>
+      <td>0.481740</td>
+    </tr>
+    <tr>
+      <th>-5.777</th>
+      <td>0.234804</td>
+      <td>-0.391340</td>
+      <td>-0.827054</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -614,6 +851,21 @@
 
 
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>
+<code>[10.677966101694915,
+ 8.64406779661017,
+ 7.627118644067796,
+ 7.627118644067796,
+ 8.64406779661017]</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
@@ -631,6 +883,263 @@
 
 
 
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th>0.0</th>
+      <td>10.677966</td>
+      <td>10.677966</td>
+      <td>10.677966</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>8.644068</td>
+      <td>8.644068</td>
+      <td>8.644068</td>
+    </tr>
+    <tr>
+      <th>2.0</th>
+      <td>7.627119</td>
+      <td>7.627119</td>
+      <td>7.627119</td>
+    </tr>
+    <tr>
+      <th>3.0</th>
+      <td>7.627119</td>
+      <td>7.627119</td>
+      <td>7.627119</td>
+    </tr>
+    <tr>
+      <th>4.0</th>
+      <td>8.644068</td>
+      <td>8.644068</td>
+      <td>8.644068</td>
+    </tr>
+    <tr>
+      <th>5.0</th>
+      <td>10.677966</td>
+      <td>10.677966</td>
+      <td>10.677966</td>
+    </tr>
+    <tr>
+      <th>6.0</th>
+      <td>8.644068</td>
+      <td>8.644068</td>
+      <td>8.644068</td>
+    </tr>
+    <tr>
+      <th>7.0</th>
+      <td>6.610169</td>
+      <td>6.610169</td>
+      <td>6.610169</td>
+    </tr>
+    <tr>
+      <th>8.0</th>
+      <td>5.084746</td>
+      <td>5.084746</td>
+      <td>5.084746</td>
+    </tr>
+    <tr>
+      <th>9.0</th>
+      <td>5.084746</td>
+      <td>5.084746</td>
+      <td>5.084746</td>
+    </tr>
+    <tr>
+      <th>10.0</th>
+      <td>6.610169</td>
+      <td>6.610169</td>
+      <td>6.610169</td>
+    </tr>
+    <tr>
+      <th>11.0</th>
+      <td>8.644068</td>
+      <td>8.644068</td>
+      <td>8.644068</td>
+    </tr>
+    <tr>
+      <th>12.0</th>
+      <td>7.627119</td>
+      <td>7.627119</td>
+      <td>7.627119</td>
+    </tr>
+    <tr>
+      <th>13.0</th>
+      <td>5.084746</td>
+      <td>5.084746</td>
+      <td>5.084746</td>
+    </tr>
+    <tr>
+      <th>14.0</th>
+      <td>5.593220</td>
+      <td>5.593220</td>
+      <td>5.593220</td>
+    </tr>
+    <tr>
+      <th>15.0</th>
+      <td>5.593220</td>
+      <td>5.593220</td>
+      <td>5.593220</td>
+    </tr>
+    <tr>
+      <th>16.0</th>
+      <td>5.084746</td>
+      <td>5.084746</td>
+      <td>5.084746</td>
+    </tr>
+    <tr>
+      <th>17.0</th>
+      <td>7.627119</td>
+      <td>7.627119</td>
+      <td>7.627119</td>
+    </tr>
+    <tr>
+      <th>18.0</th>
+      <td>7.627119</td>
+      <td>7.627119</td>
+      <td>7.627119</td>
+    </tr>
+    <tr>
+      <th>19.0</th>
+      <td>5.084746</td>
+      <td>5.084746</td>
+      <td>5.084746</td>
+    </tr>
+    <tr>
+      <th>20.0</th>
+      <td>5.593220</td>
+      <td>5.593220</td>
+      <td>5.593220</td>
+    </tr>
+    <tr>
+      <th>21.0</th>
+      <td>5.593220</td>
+      <td>5.593220</td>
+      <td>5.593220</td>
+    </tr>
+    <tr>
+      <th>22.0</th>
+      <td>5.084746</td>
+      <td>5.084746</td>
+      <td>5.084746</td>
+    </tr>
+    <tr>
+      <th>23.0</th>
+      <td>7.627119</td>
+      <td>7.627119</td>
+      <td>7.627119</td>
+    </tr>
+    <tr>
+      <th>24.0</th>
+      <td>8.644068</td>
+      <td>8.644068</td>
+      <td>8.644068</td>
+    </tr>
+    <tr>
+      <th>25.0</th>
+      <td>6.610169</td>
+      <td>6.610169</td>
+      <td>6.610169</td>
+    </tr>
+    <tr>
+      <th>26.0</th>
+      <td>5.084746</td>
+      <td>5.084746</td>
+      <td>5.084746</td>
+    </tr>
+    <tr>
+      <th>27.0</th>
+      <td>5.084746</td>
+      <td>5.084746</td>
+      <td>5.084746</td>
+    </tr>
+    <tr>
+      <th>28.0</th>
+      <td>6.610169</td>
+      <td>6.610169</td>
+      <td>6.610169</td>
+    </tr>
+    <tr>
+      <th>29.0</th>
+      <td>8.644068</td>
+      <td>8.644068</td>
+      <td>8.644068</td>
+    </tr>
+    <tr>
+      <th>30.0</th>
+      <td>10.677966</td>
+      <td>10.677966</td>
+      <td>10.677966</td>
+    </tr>
+    <tr>
+      <th>31.0</th>
+      <td>8.644068</td>
+      <td>8.644068</td>
+      <td>8.644068</td>
+    </tr>
+    <tr>
+      <th>32.0</th>
+      <td>7.627119</td>
+      <td>7.627119</td>
+      <td>7.627119</td>
+    </tr>
+    <tr>
+      <th>33.0</th>
+      <td>7.627119</td>
+      <td>7.627119</td>
+      <td>7.627119</td>
+    </tr>
+    <tr>
+      <th>34.0</th>
+      <td>8.644068</td>
+      <td>8.644068</td>
+      <td>8.644068</td>
+    </tr>
+    <tr>
+      <th>35.0</th>
+      <td>10.677966</td>
+      <td>10.677966</td>
+      <td>10.677966</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
               
