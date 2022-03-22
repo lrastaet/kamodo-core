@@ -130,6 +130,8 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#kamodofy">kamodofy</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gridify">gridify</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#pointlike">pointlike</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#partial">partial</a>
@@ -212,15 +214,15 @@ of scientific domains and disciplines.</p></div>
 <p><strong> Inputs </strong></p>
 <ul>
 <li>
-<p><strong> funcs </strong> - <em>(optional)</em> list of expressions to register in f(x)=x format</p>
+<p><strong> funcs </strong> - <em>(optional)</em> list of (str) expressions to register in f(x)=x format</p>
 </li>
 <li>
 <p><strong> kwargs </strong> - <em>(optional)</em> key,value pairs of functions to register</p>
 <ul>
-<li>key - left-hand-side symbol</li>
+<li>key - left-hand-side symbol (str)</li>
 <li>value - can be one of:<ul>
-<li>latex or python expression str e.g. "x^2-x-1"</li>
-<li>kamodofied function with appropriate .meta and .data attributers (see @kamodofy)</li>
+<li>latex or python (str) expression e.g. "x^2-x-1"</li>
+<li>kamodofied function with appropriate .meta and .data attributers (see <a href="#kamodofy">@kamodofy</a> decorator)</li>
 <li>lambda function (having no meta or data attributes)</li>
 </ul>
 </li>
@@ -261,7 +263,7 @@ automatic function composition and inserting unit conversions where appropriate.
 <p><strong> input_expr </strong> - rhs string or kamodofied function, one of:</p>
 <ul>
 <li>right-hand-side expression: python or latex str (e.g.<code>x^2-x-1</code>)</li>
-<li>kamodofied function with appropriate .meta and .data attributers (see @kamodofy)</li>
+<li>kamodofied function with appropriate .meta and .data attributers (see <a href="#kamodofy">@kamodofy</a>)</li>
 <li>lambda function (having no meta or data attributes)</li>
 </ul>
 </li>
@@ -278,8 +280,8 @@ automatic function composition and inserting unit conversions where appropriate.
 </code></pre></div>
 
 <p>The above <code>kobj</code> will render in a Jupyter notebook like this:</p>
-<div class="arithmatex"><script type="math/tex; mode=display">\operatorname{radius}{\left(r \right)}[m] = r</script></div>
-<div class="arithmatex"><script type="math/tex; mode=display">\operatorname{area}{\left(r \right)}[cm^{2}] = 10000 \pi \operatorname{radius}^{2}{\left(r \right)}</script></div>
+<p><script type="math/tex; mode=display">\operatorname{radius}{\left(r \right)}[m] = r</script></p>
+<p><script type="math/tex; mode=display">\operatorname{area}{\left(r \right)}[cm^{2}] = 10000 \pi \operatorname{radius}^{2}{\left(r \right)}</script></p>
 <p>Kamodo will raise an error if left-hand-side units are incompatible with the right-hand-side expression</p>
 <div class="codehilite"><pre><span></span><code><span class="n">kobj</span> <span class="o">=</span> <span class="n">Kamodo</span><span class="p">()</span>
 <span class="n">kobj</span><span class="p">[</span><span class="s1">&#39;area[cm^2]&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;x^2&#39;</span> <span class="c1"># area has units of cm^2</span>
@@ -290,7 +292,7 @@ automatic function composition and inserting unit conversions where appropriate.
 </code></pre></div>
 
 <p>output:</p>
-<div class="arithmatex"><script type="math/tex; mode=display">\text{cannot convert area(x) [centimeter**2] length**2 to g(x)[kilogram] mass}</script></div></div>
+<p><script type="math/tex; mode=display">\text{cannot convert area(x) [centimeter<strong>2] length</strong>2 to g(x)[kilogram] mass}</script></p></div>
 </div>
 </div>
 <h3 id="retrieving-functions">Retrieving functions<a class="headerlink" href="#retrieving-functions" title="Permanent link">&para;</a></h3>
@@ -327,7 +329,7 @@ automatic function composition and inserting unit conversions where appropriate.
 </code></pre></div>
 
 <p>The above renders as follows in a jupyter notebook</p>
-<p><span class="arithmatex"><span class="arithmatex">\(f{\left(x \right)} = x^{2} - x - 1\)</span></span></p></div>
+<p><script type="math/tex">f{\left(x \right)} = x^{2} - x - 1</script></p></div>
 </div>
 </div>
 <h3 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link">&para;</a></h3>
@@ -432,7 +434,7 @@ When run in a jupyter notebook, an inline plotly figure will be displayed.</p>
 </code></pre></div>
 
 <p>When placed on a line by itself, the above object will be rendered by jupyter notebooks like this:</p>
-<div class="arithmatex"><script type="math/tex; mode=display">\begin{equation}f{\left(x \right)} = x^{2} - x - 1\end{equation}</script></div>
+<p><script type="math/tex; mode=display">\begin{equation}f{\left(x \right)} = x^{2} - x - 1\end{equation}</script></p>
 <p>More on the <em>repr_latex</em> method can be found <a href="https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html">here</a></p>
 <p>Note: Registered functions are also equiped with their own <code><em>repr_latex</em></code> method.</p></div>
 <div class="autodoc-signature"><code><strong>to_latex</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">keys=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">mode='equation'</em><span class="autodoc-punctuation">)</span></div>
@@ -729,34 +731,123 @@ When run in a jupyter notebook, an inline plotly figure will be displayed.</p>
 <div class="codehilite"><pre><span></span><code><span class="go">900</span>
 </code></pre></div></div>
 </div>
+<h3 id="gridify">gridify<a class="headerlink" href="#gridify" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
 <div class="autodoc-signature"><code>kamodo.util.<strong>gridify</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">_func=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">order='A'</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">squeeze=True</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**defaults</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><ul>
-<li>Given a function of shape (n,dim) and arguments of shape (L), (M), calls f with points L*M</li>
+<div class="autodoc-docstring"><p>Given a function _func(xvec) taking a single variable of shape (n,dim) and defaults
+(e.g. x(L), y(M), z(N)) <code>gridify</code> returns a new function <code>_func(x,y,z)</code> that calls <code>_func</code> with points
+<code>n=LxMxN</code>, reshaping the result to <code>(M, L, N)</code> (<code>order='A'</code>, default) or <code>(L, M, N)</code> (<code>order='C'</code>).
+See <a href="https://numpy.org/doc/stable/reference/generated/numpy.meshgrid.html">np.meshgrid</a>
+and <a href="https://numpy.org/doc/stable/reference/generated/numpy.reshape.html">np.reshape</a>.</p>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>_func: kamodo function</li>
+<li>order: 'A' str (default) passed to reshape.<ul>
+<li>order = 'A': use indexing='xy' in meshgrid</li>
+<li>order = 'C': use indexing='ij' in meshgrid</li>
 </ul>
-<p>_func: kamodo function
-order: 'A' (default) uses indexing='xy' in meshgrid, 'C' uses indexing='ij' in meshgrid
-squeeze: True (default) passed to reshape before returning</p>
-<p>returns: decorator gridify</p></div>
+</li>
+<li>squeeze: True (default) passed to reshape before returning</li>
+</ul>
+<p><strong> returns </strong>: mutated function</p>
+<p><strong> usage </strong>:</p>
+<p>Conceptually, <code>@gridify</code> converts point-like interpolators to grid-based interpolators.</p>
+<p>Suppose we have a function <code>r(xvec)</code> that takes an array of shape <code>(n,2)</code> and returns the magnitude <code>r</code> of each point.
+By applying <code>@gridify</code>, we convert <code>r(xvec)</code> to <code>r(x,y)</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@gridify</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">r</span><span class="p">(</span><span class="n">xvec</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xvec</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The result is automatically reshaped to match the input arrays for <code>x,y</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># (3, 2)</span>
+</code></pre></div>
+
+<p>In addition, <code>r</code> receives defaults for <code>x</code> and <code>y</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">r</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># (11,5)</span>
+</code></pre></div>
+
+<p>To see the defaults, use the <code>get_defaults</code> function</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">kamodo</span> <span class="kn">import</span> <span class="n">get_defaults</span>
+
+<span class="n">defaults</span> <span class="o">=</span> <span class="n">get_defaults</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="n">defaults</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="c1"># (5,)</span>
+<span class="n">defaults</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="c1"># (11,)</span>
+</code></pre></div>
+
+<p>We can generate "slices" for fixed values of <code>x</code> or <code>y</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># array([5., 4., 3., 2., 1., 0., 1., 2., 3., 4., 5.])</span>
+<span class="n">r</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># array([3. , 1.5, 0. , 1.5, 3. ])</span>
+</code></pre></div>
+
+<p>Use <code>order</code> to control the shapes of returned arrays (row vs column major).</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@gridify</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span> <span class="n">z</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">r</span><span class="p">(</span><span class="n">xvec</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xvec</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">r</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># (11, 5, 13) corresponds to y, x, z</span>
+
+<span class="nd">@gridify</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span> <span class="n">z</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">r</span><span class="p">(</span><span class="n">xvec</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xvec</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">r</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># (5, 11, 13) corresponds to x, y, z</span>
+</code></pre></div>
+
+<p>By default, the output array will be squeezed if a dimension has size 1.
+Use <code>squeeze=False</code> to disable this behavior:</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@gridify</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span> <span class="n">squeeze</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">r</span><span class="p">(</span><span class="n">xvec</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xvec</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">r</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># (1, 5)</span>
+<span class="n">r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># (11, 1)</span>
+</code></pre></div></div>
 </div>
 <h3 id="pointlike">pointlike<a class="headerlink" href="#pointlike" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
 <div class="autodoc-signature"><code>kamodo.util.<strong>pointlike</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">_func=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">signature=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">otypes=[<class 'float'>]</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">squeeze=None</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><ul>
-<li>Transforms a single-argument function to one that accepts m points of dimension n</li>
+<div class="autodoc-docstring"><p>Transforms a single-argument function to one that accepts m points of dimension n
+pointlike wraps <a href="https://numpy.org/doc/stable/reference/generated/numpy.vectorize.html">np.vectorize</a></p>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>_func: kamodo function</li>
+<li>signature: (optional) Generalized universal function signature, e.g., (m,n),(n)-&gt;(m) for vectorized matrix-vector multiplication.</li>
+<li>otypes: list(types) default is [float] The output data type. It must be specified as either a string of typecode characters or a list of data type specifiers. There should be one data type specifier for each output.</li>
+<li>squeeze: axis on which to squeeze result</li>
 </ul>
-<p>_func: kamodo function</p>
-<p>returns: decorator pointlike</p></div>
+<p><strong> returns </strong>: modified function</p></div>
 </div>
 <h3 id="partial">partial<a class="headerlink" href="#partial" title="Permanent link">&para;</a></h3>
 <div class="autodoc">
 <div class="autodoc-signature"><code>kamodo.util.<strong>partial</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">_func=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">**partial_kwargs</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><ul>
-<li>A partial function decorator, Reduces function signature to reflect partially assigned kwargs</li>
+<div class="autodoc-docstring"><p>A partial function decorator, reducing function signature to reflect partially assigned kwargs.</p>
+<p><strong> inputs </strong>:</p>
+<ul>
+<li>
+<p>_func: kamodo function</p>
+</li>
+<li>
+<p>partial_kwargs: (dict) _func arguments to set</p>
+</li>
 </ul>
-<p>_func: kamodo function object
-**partial_kwargs:</p>
-<p>returns: decorator partial</p></div>
+<p><strong> returns </strong>: updated function with reduced arguments</p>
+<p><strong> usage </strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@partial</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span>
+<span class="k">assert</span> <span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="o">+</span><span class="mi">1</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">m</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="c1"># wrapped() takes from 1 to 2 positional arguments but 3 were given</span>
+</code></pre></div>
+
+<p>Note: This decorator differs significantly from functools.partial in the following ways:</p>
+<ul>
+<li>functools.partial updates the function defaults without actually eliminating arguments.</li>
+<li>functools.partial raises TypeError when used as a @decorator</li>
+</ul></div>
 </div>
 <h2 id="test-suite">Test Suite<a class="headerlink" href="#test-suite" title="Permanent link">&para;</a></h2>
 <p>Kamodo features a full suite of tests run via pytest. We highlight a few of these tests below as further examples of Kamodo's expected use cases.</p>

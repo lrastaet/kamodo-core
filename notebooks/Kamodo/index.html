@@ -226,7 +226,7 @@
 <div class="output_area">
 <div class="output_text output_subarea output_execute_result">
 <pre>
-<code>array(9, dtype=int64)</code>
+<code>9</code>
 </pre>
 </div>
 </div>
@@ -270,7 +270,7 @@
 <div class="output_area">
 <div class="output_text output_subarea output_execute_result">
 <pre>
-<code>array(2, dtype=int64)</code>
+<code>2</code>
 </pre>
 </div>
 </div>
@@ -309,7 +309,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we have defined two functions <span class="arithmatex">\(x(t)\)</span>, <span class="arithmatex">\(g(y)\)</span>, and the composition <span class="arithmatex">\(g∘f\)</span>. Kamodo was able to determine that <span class="arithmatex">\(f\)</span> is implicitly a function of <span class="arithmatex">\(t\)</span> even though we did not say so in <span class="arithmatex">\(f\)</span>'s declaration.</p>
+<p>Here we have defined two functions <script type="math/tex">x(t)</script>, <script type="math/tex">g(y)</script>, and the composition <script type="math/tex">g∘f</script>. Kamodo was able to determine that <script type="math/tex">f</script> is implicitly a function of <script type="math/tex">t</script> even though we did not say so in <script type="math/tex">f</script>'s declaration.</p>
 </div>
 </div>
 </div>
@@ -317,7 +317,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="function-evaluation">Function evaluation<a class="headerlink" href="#function-evaluation" title="Permanent link">&para;</a></h4>
-<p>Kamodo uses sympy's <code>lambdify</code> function to turn the above equations into highly optimized functions for numerical evaluation. We may evaluate <span class="arithmatex">\(f(t)\)</span> for <span class="arithmatex">\(t=3\)</span> using "dot" notation:</p>
+<p>Kamodo uses sympy's <code>lambdify</code> function to turn the above equations into highly optimized functions for numerical evaluation. We may evaluate <script type="math/tex">f(t)</script> for <script type="math/tex">t=3</script> using "dot" notation:</p>
 </div>
 </div>
 </div>
@@ -336,7 +336,7 @@
 <div class="output_area">
 <div class="output_text output_subarea output_execute_result">
 <pre>
-<code>array(8, dtype=int64)</code>
+<code>8</code>
 </pre>
 </div>
 </div>
@@ -358,7 +358,7 @@
 <div class="output_area">
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-<code>Help on function _lambdifygenerated in module numexpr:
+<code>Help on function _lambdifygenerated:
 
 _lambdifygenerated(y)
     Created with lambdify. Signature:
@@ -372,7 +372,7 @@ _lambdifygenerated(y)
     Source code:
 
     def _lambdifygenerated(y):
-        return (evaluate(&#39;y - 1&#39;, truediv=True))
+        return (y - 1)
 
 
     Imported modules:
@@ -705,7 +705,7 @@ _lambdifygenerated(y)
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>When registering the above function as part of a Kamodo object, Kamodo will assign the greek letter <span class="arithmatex">\(\rho\)</span> to the left-hand-side following the <a href="../Syntax/">Syntax Conventions</a>. For the right hand side the generic <span class="arithmatex">\(\lambda(x)\)</span> is used to signify that no <a href="https://en.wikipedia.org/wiki/Closed-form_expression">closed-form expression</a> is available.</p>
+<p>When registering the above function as part of a Kamodo object, Kamodo will assign the greek letter <script type="math/tex">\rho</script> to the left-hand-side following the <a href="../Syntax/">Syntax Conventions</a>. For the right hand side the generic <script type="math/tex">\lambda(x)</script> is used to signify that no <a href="https://en.wikipedia.org/wiki/Closed-form_expression">closed-form expression</a> is available.</p>
 </div>
 </div>
 </div>
@@ -1410,7 +1410,7 @@ require(['plotly'], function(Plotly) {
 <div class="output_area">
 <div class="output_text output_subarea output_execute_result">
 <pre>
-<code>&lt;generator object simulate at 0x7fd566c2d3d0&gt;</code>
+<code>&lt;generator object simulate at 0x7fd0716994d0&gt;</code>
 </pre>
 </div>
 </div>
@@ -1464,32 +1464,32 @@ require(['plotly'], function(Plotly) {
 <tbody>
     <tr>
       <th>0</th>
-      <td>None</td>
+      <td>NaN</td>
       <td>0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
+      <td>1.0</td>
       <td>-1</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0</td>
+      <td>0.0</td>
       <td>-2</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-1</td>
+      <td>-1.0</td>
       <td>-3</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-2</td>
+      <td>-2.0</td>
       <td>-4</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>-3</td>
+      <td>-3.0</td>
       <td>-5</td>
     </tr>
   </tbody>

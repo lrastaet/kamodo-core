@@ -306,6 +306,63 @@ require(['plotly'], function(Plotly) {
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Bvec works on a list of points and on individual points</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">kamodo</span><span class="o">.</span><span class="n">Bvec</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="c1"># x,y,z</span>
+             <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],])</span>
+</code></pre></div>
+
+
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>
+<code>array([[ 0.   ,  0.   ,  1.   ],
+       [ 0.   ,  0.   ,  0.125],
+       [-0.   , -0.   , -2.   ],
+       [-0.   , -0.   , -0.25 ]])</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">kamodo</span><span class="o">.</span><span class="n">Bvec</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div>
+
+
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>
+<code>array([0., 0., 1.])</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="normalization">Normalization<a class="headerlink" href="#normalization" title="Permanent link">&para;</a></h2>
 <p>Instead of solving the initial value problem on the original field, we will be solving on the normalized field. This will mean that the integral path is the same as the arclength, allowing us to control the visual fidelity of the resulting field.</p>
 </div>
@@ -364,6 +421,34 @@ require(['plotly'], function(Plotly) {
 <div class="output_area">
 <div class="output_latex output_subarea output_execute_result">
 \begin{equation}\vec{B}{\left(\vec{r} \right)} = \lambda{\left(\vec{r} \right)}\end{equation} \begin{equation}\hat{n}{\left(\vec{y} \right)} = \vec{y}/\sqrt{\vec{y} \cdot \vec{y}}\end{equation} \begin{equation}\hat{b}{\left(\vec{r} \right)} = \hat{n}{\left(\vec{B}{\left(\vec{r} \right)} \right)}\end{equation}
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="codehilite"><pre><span></span><code><span class="n">kamodo</span><span class="o">.</span><span class="n">bhat</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="c1"># x,y,z</span>
+             <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+</code></pre></div>
+
+
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>
+<code>array([[ 0.,  0.,  1.],
+       [ 0.,  0.,  1.],
+       [-0., -0., -1.],
+       [-0., -0., -1.]])</code>
+</pre>
 </div>
 </div>
 </div>
@@ -461,8 +546,8 @@ require(['plotly'], function(Plotly) {
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The solver returns a family of solutions, represented as a single function of a complex array, <span class="arithmatex">\(\vec{s}(s)\)</span> where
-<span class="arithmatex">\(s\)</span> is a complex array. </p>
+<p>The solver returns a family of solutions, represented as a single function of a complex array, <script type="math/tex">\vec{s}(s)</script> where
+<script type="math/tex">s</script> is a complex array. </p>
 </div>
 </div>
 </div>
@@ -470,7 +555,7 @@ require(['plotly'], function(Plotly) {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="evaluating-the-solutions">Evaluating the Solutions<a class="headerlink" href="#evaluating-the-solutions" title="Permanent link">&para;</a></h2>
-<p>On evaluation, <span class="arithmatex">\(\vec{s}(s)\)</span> returns a pandas dataframe.</p>
+<p>On evaluation, <script type="math/tex">\vec{s}(s)</script> returns a pandas dataframe.</p>
 </div>
 </div>
 </div>
@@ -786,7 +871,8 @@ require(['plotly'], function(Plotly) {
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To show the direction of the field at each point, we can evaluate <span class="arithmatex">\(\hat{B}(\vec{s}(s))\)</span></p>
+<p>To show the direction of the field at each point, we can evaluate <script type="math/tex">\hat{B}(\vec{s}(s))</script>
+</p>
 </div>
 </div>
 </div>

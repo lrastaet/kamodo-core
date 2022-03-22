@@ -419,10 +419,10 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we have defined a function <span class="arithmatex">\(g_N\)</span> which returns an array of shape <span class="arithmatex">\(N\)</span>. As input, it takes one argument <span class="arithmatex">\(x_N\)</span> which also has size <span class="arithmatex">\(N\)</span>. We also generate a function <span class="arithmatex">\(f\)</span> which is the same as <span class="arithmatex">\(g_N\)</span> but with a different units.</p>
+<p>Here we have defined a function <script type="math/tex">g_N</script> which returns an array of shape <script type="math/tex">N</script>. As input, it takes one argument <script type="math/tex">x_N</script> which also has size <script type="math/tex">N</script>. We also generate a function <script type="math/tex">f</script> which is the same as <script type="math/tex">g_N</script> but with a different units.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We could have named the function <span class="arithmatex">\(g\)</span> instead of <span class="arithmatex">\(g_N\)</span>. The variable names have no bearing on the resulting plots - only the argument input shapes and output shapes matter.</p>
+<p>We could have named the function <script type="math/tex">g</script> instead of <script type="math/tex">g_N</script>. The variable names have no bearing on the resulting plots - only the argument input shapes and output shapes matter.</p>
 </div>
 </div>
 </div>
@@ -459,7 +459,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is the graph <span class="arithmatex">\(f(x_n)\)</span> for <span class="arithmatex">\(x_N \in [-4,3]\)</span>.</p>
+<p>This is the graph <script type="math/tex">f(x_n)</script> for <script type="math/tex">x_N \in [-4,3]</script>.</p>
 </div>
 </div>
 </div>
@@ -523,7 +523,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this case, we only need to name the variable we wish to plot, because we have already defined a function <span class="arithmatex">\(rho_N(t_N)\)</span> with a default parameter for <span class="arithmatex">\(t_N\)</span>. </p>
+<p>In this case, we only need to name the variable we wish to plot, because we have already defined a function <script type="math/tex">rho_N(t_N)</script> with a default parameter for <script type="math/tex">t_N</script>. </p>
 </div>
 </div>
 </div>
@@ -559,7 +559,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="2-d-parametric-charts">2-D Parametric charts<a class="headerlink" href="#2-d-parametric-charts" title="Permanent link">&para;</a></h2>
-<p>For 2-D Plots, the output function must have input shape <span class="arithmatex">\((N,1)\)</span> and output shape <span class="arithmatex">\((N,2)\)</span>.</p>
+<p>For 2-D Plots, the output function must have input shape <script type="math/tex">(N,1)</script> and output shape <script type="math/tex">(N,2)</script>.</p>
 </div>
 </div>
 </div>
@@ -595,7 +595,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here, we again provide a default array for <span class="arithmatex">\(\theta_N\)</span> so the end user does not need to:</p>
+<p>Here, we again provide a default array for <script type="math/tex">\theta_N</script> so the end user does not need to:</p>
 </div>
 </div>
 </div>
@@ -628,7 +628,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For 3-D parametric curves, the output function must have input shape <span class="arithmatex">\((N,1)\)</span> and output shape <span class="arithmatex">\((N,3)\)</span>.</p>
+<p>For 3-D parametric curves, the output function must have input shape <script type="math/tex">(N,1)</script> and output shape <script type="math/tex">(N,3)</script>.</p>
 </div>
 </div>
 </div>
@@ -742,7 +742,8 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="vector-fields">Vector fields<a class="headerlink" href="#vector-fields" title="Permanent link">&para;</a></h1>
-<p>Kamodo generates a 2-d vector (quiver) plot for functions of one variable, if both the input and output have shape (N,2). The input positions are assumed to be <span class="arithmatex">\(x\)</span>,<span class="arithmatex">\(y\)</span> and the output vectors are assumed to be <span class="arithmatex">\(v_x\)</span>, <span class="arithmatex">\(v_y\)</span></p>
+<p>Kamodo generates a 2-d vector (quiver) plot for functions of one variable, if both the input and output have shape (N,2). The input positions are assumed to be <script type="math/tex">x</script>,<script type="math/tex">y</script> and the output vectors are assumed to be <script type="math/tex">v_x</script>, <script type="math/tex">v_y</script>
+</p>
 </div>
 </div>
 </div>
@@ -965,7 +966,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Since <span class="arithmatex">\(x_N\)</span> and <span class="arithmatex">\(y_M\)</span> have differnt sizes, we could have used <code>indexing=ij</code> as an argument to meshgrid and kamodo would have produced the same figure - Kamodo swaps the ordering where appropriate. In the event that <em>both</em> arguments have the same size, we can pass an <code>indexing</code> argument as an option to the plot function.</p>
+<p>Since <script type="math/tex">x_N</script> and <script type="math/tex">y_M</script> have differnt sizes, we could have used <code>indexing=ij</code> as an argument to meshgrid and kamodo would have produced the same figure - Kamodo swaps the ordering where appropriate. In the event that <em>both</em> arguments have the same size, we can pass an <code>indexing</code> argument as an option to the plot function.</p>
 </div>
 </div>
 </div>
@@ -1201,7 +1202,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="map-to-plane">Map-to-plane<a class="headerlink" href="#map-to-plane" title="Permanent link">&para;</a></h2>
-<p>We often need to produce slices through a volumetric grid of data. This may be accomplished through the use of volumetric grid interpolators equipped with default values for each of the input arguments. Suppose such a function has default input arguments of size (L), (M), (N), and output shape (L,M,N), then a cartesian plane will be generated if the user overrides one of these defaults (e.g. setting <span class="arithmatex">\(L = 1\)</span>).</p>
+<p>We often need to produce slices through a volumetric grid of data. This may be accomplished through the use of volumetric grid interpolators equipped with default values for each of the input arguments. Suppose such a function has default input arguments of size (L), (M), (N), and output shape (L,M,N), then a cartesian plane will be generated if the user overrides one of these defaults (e.g. setting <script type="math/tex">L = 1</script>).</p>
 </div>
 </div>
 </div>
