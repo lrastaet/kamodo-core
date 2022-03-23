@@ -214,6 +214,36 @@ def default_inheritance_check(rhs_expr, lhs_expr):
         pass
 
 
+def dimensionless_unit_check(sym_name, arg_units):
+    """
+    Check if args_units has dimensionless item using regex,
+    if it has then 'ordered_unit' will return blank item  for the
+    corresponding key and will update 'arg_units' with blank-""
+    """
+    try:
+        sym_name_split = sym_name.split(')')
+        sym_name_split.pop(-1)
+        for i in sym_name_split:
+            if '(' in i and '[' in i:
+                flag = True
+            else:
+                flag = False
+        if flag:
+            lhs_args_temp = re.findall(r"\((.+)\)", sym_name)[0]
+            ordered_unit = re.findall(
+                r"((?<!\])|(?<=\[)[^\[\],]*)\]?(?:,|\)|$)",
+                lhs_args_temp)
+            if "" in ordered_unit:
+                counter = 0
+                for k, v in arg_units.items():
+                    arg_units[k] = ordered_unit[counter]
+                    counter = counter + 1
+        return arg_units
+
+    except KeyError:
+        pass
+
+
 def get_str_units(bracketed_str):
     """finds all bracketed units in a string
     supports functions like
@@ -254,6 +284,7 @@ def extract_units(func_str):
             extract_units('f[(cm)^2]')
             ('f', {'f': '(cm)^2'})
         no args named and no units named
+            extract_units('f')
             ('f', {'f': ''})
     """
     # remove any spaces
@@ -269,10 +300,19 @@ def extract_units(func_str):
         arg_units = get_str_units(lhs_args)
         args = lhs_args.split(',')
 
+        try:
+            if len(args) != len(arg_units) and len(arg_units)>0:
+                for i in range(len(args)):
+                    if '[' not in args[i]:
+                        arg_units.insert(i, "")
+        except IndexError:
+            pass
+        except NotImplementedError:
+            pass
+
         for arg, unit in zip(args, arg_units):
             unit_dict[arg.replace('[{}]'.format(unit), '')] = unit
-
-        if len(all_units) == len(arg_units):
+        if len(all_units) == len(arg_units) and "" not in arg_units:
             output_units = ''
         else:
             output_units = all_units[-1]
@@ -334,21 +374,49 @@ def get_function_args(func, hidden_args=[]):
         [a for a in getfullargspec(func).args if a not in hidden_args])
 
 
-# class Kamodo(collections.OrderedDict):
 class Kamodo(UserDict):
-    """Kamodo base class demonstrating common API for space weather models
-    This API provides access to space weather fields and their properties through:
-        interpolation of variables at user-defined points
-        unit conversions
-        coordinate transformations specific to space weather domains
-    Required methods that have not been implemented in child classes
-    will raise a NotImplementedError
+    """Kamodo base class demonstrating common API for scientific resources.
+
+    This API provides access to scientific fields and their properties through:
+    
+    * Interpolation of variables at user-defined points
+    * Automatic unit conversions
+    * Function composition convenient for coordinate transformations and data pipelining
+
+    Note: While intended for with space weather applications, the kamodo base class
+    was designed to be as generic as possible, and should be applicable to a wide range
+    of scientific domains and disciplines.
     """
 
     def __init__(self, *funcs, **kwargs):
-        """Base initialization method
-        Args:
-            param1 (str, optional): Filename of datafile to interpolate from
+        """Initialize Kamodo object with functions or by keyword
+        
+        ** Inputs **
+
+        * ** funcs ** - *(optional)* list of (str) expressions to register in f(x)=x format
+
+        * ** kwargs ** - *(optional)* key,value pairs of functions to register
+            * key - left-hand-side symbol (str)
+            * value - can be one of:
+                * latex or python (str) expression e.g. "x^2-x-1"
+                * kamodofied function with appropriate .meta and .data attributers (see [@kamodofy](#kamodofy) decorator)
+                * lambda function (having no meta or data attributes)
+
+        * ** verbose ** - *(optional)* (`default=False`) flag to turn on all debugging print statements
+
+
+
+        ** returns ** - dictionary-like kamodo object of (symbol, function) pairs
+
+        usage:
+
+        ```python
+            kobj = Kamodo(
+                'f(x[cm])[kg/m^3]=x^2-x-1', # full expressions with units
+                area = kamodofy(lambda x: x*x, units='cm^2'), # kamodofied functions
+                h = 'sin(x)', # key-value expressions
+                )
+        ```
         """
 
         super(Kamodo, self).__init__()
@@ -520,6 +588,10 @@ class Kamodo(UserDict):
     def update_unit_registry(self, func, arg_units):
         """Inserts unit functions into registry"""
         lhs, unit_dict = extract_units(func)
+        if self.verbose:
+            print('extracted lhs units: {}'.format(lhs))
+            for k, v in unit_dict.items():
+                print('  ', k, v)
         # if arg_units is None:
         #     arg_units = {}
         for key, value in unit_dict.items():
@@ -607,15 +679,78 @@ class Kamodo(UserDict):
         self.register_symbol(lhs_symbol)
 
     def __setitem__(self, sym_name, input_expr):
-        """Assigns a function or expression to a new symbol,
-        performs unit conversion where appropriate
+        """Assigns a function or expression to a new symbol, performing
+        automatic function composition and inserting unit conversions where appropriate.
+
+        * ** sym_name ** - function symbol to associate with right-hand-side in one of the following formats:
+            - f - a lone fuction symbol (alphabetic argument ordering)
+            - f(z,x,y) - explicit argument ordering
+            - f[kg] - output unit assignment
+            - f(x[cm])[kg] - output and input unit assignment
+
+        * ** input_expr ** - rhs string or kamodofied function, one of:
+            * right-hand-side expression: python or latex str (e.g.`x^2-x-1`)
+            * kamodofied function with appropriate .meta and .data attributers (see [@kamodofy](#kamodofy))
+            * lambda function (having no meta or data attributes)
+
+        Raises:
+            - NameError when left-hand-side units incompatible with right-hand-side expression
+        
+        returns: None
+
+        usage:
+
+        Setting left-hand-side units will automatically trigger unit conversion
+        
+        ```py
+        kobj = Kamodo()
+        kobj['radius[m]'] = 'r'
+        kobj['area[cm^2]'] = 'pi * radius^2'
+        kobj
+        ```
+
+        The above `kobj` will render in a Jupyter notebook like this:
+
+        $$\\operatorname{radius}{\\left(r \\right)}[m] = r$$
+        
+        $$\\operatorname{area}{\\left(r \\right)}[cm^{2}] = 10000 \\pi \\operatorname{radius}^{2}{\\left(r \\right)}$$
+
+        Kamodo will raise an error if left-hand-side units are incompatible with the right-hand-side expression
+        
+        ```py
+        kobj = Kamodo()
+        kobj['area[cm^2]'] = 'x^2' # area has units of cm^2
+        try:
+            kobj['g(x)[kg]'] = 'area' # mass not compatible with square length
+        except NameError as m:
+            print(m)
+        ```
+        
+        output:
+        
+        $$\\text{cannot convert area(x) [centimeter**2] length**2 to g(x)[kilogram] mass}$$
+        
+
         """
         if not isinstance(sym_name, str):
             sym_name = str(sym_name)
-
         symbol, args, lhs_units, lhs_expr = self.parse_key(sym_name)
         if hasattr(input_expr, '__call__'):
             self.register_function(input_expr, symbol, lhs_expr, lhs_units)
+            try:
+                func_doc = input_expr.__doc__
+                expression = func_doc.split('evaluate')[1]
+                expression = expression.split(',')[0]
+                expression = expression.replace('(', '')
+                expression = expression.replace(',', '')
+                expression = expression.replace("'", '')
+                expression = self.parse_value(expression, self.symbol_registry)
+                self.signatures[str(lhs_expr)]['rhs'] = expression
+
+            except AttributeError:
+                pass
+            except IndexError:
+                pass
 
         else:
             if self.verbose:
@@ -654,6 +789,9 @@ class Kamodo(UserDict):
                 arg_units = get_arg_units(rhs_expr, self.unit_registry)
                 if self.verbose:
                     print(arg_units)
+
+                sym_name_bkup = sym_name
+
                 sym_name = self.update_unit_registry(sym_name, arg_units)
                 if self.verbose:
                     print('unit registry update returned', sym_name,
@@ -665,11 +803,9 @@ class Kamodo(UserDict):
                           symbol,
                           'had no units. Getting units from {}'.format(
                               rhs_expr))
-
                 expr_unit = get_expr_unit(rhs_expr, self.unit_registry,
                                           self.verbose)
                 arg_units = get_arg_units(rhs_expr, self.unit_registry)
-
                 if self.verbose:
                     print('registering {} with {} {}'.format(symbol, expr_unit,
                                                              arg_units))
@@ -694,7 +830,6 @@ class Kamodo(UserDict):
 
                 rhs = rhs_expr
                 sym_name = str(sym_name)
-
             if len(lhs_units) > 0:
                 if self.verbose:
                     print('about to unify lhs_units {} {} with {}'.format(
@@ -706,7 +841,6 @@ class Kamodo(UserDict):
                     # to_symbol = symbol,
                     verbose=self.verbose)
                 rhs_expr = expr.rhs
-
             if self.verbose:
                 print('symbol after unify', symbol, type(symbol), rhs_expr)
                 print('unit registry to resolve units:')
@@ -722,7 +856,6 @@ class Kamodo(UserDict):
                     units = ''
             else:
                 units = ''
-
             if self.verbose:
                 print('units after resolve', symbol, units)
                 for k, v in self.unit_registry.items():
@@ -741,9 +874,10 @@ class Kamodo(UserDict):
                     if len(unit_args.args) == len(symbol.args):
                         for arg, unit in zip(symbol.args, unit_args.args):
                             arg_units[str(arg)] = str(get_abbrev(unit))
-
             func = self.vectorize_function(symbol, rhs_expr, composition)
-
+            for k, v in arg_units.items():
+                if str(v) == 'Dimension(1)':
+                    arg_units[k] = ''
             signature, defaults = sign_defaults(symbol, rhs_expr, composition)
             default_non_default_parameter = []
             try:
@@ -751,9 +885,22 @@ class Kamodo(UserDict):
                     default_non_default_parameter.append(parm.name)
             except KeyError:
                 pass
-
-            symbol = reorder_symbol(defaults, default_non_default_parameter,
-                                                symbol)
+            if len(defaults) > 0:
+                symbol = reorder_symbol(defaults, default_non_default_parameter,
+                                                  symbol)
+            try:
+                arg_units = dimensionless_unit_check(sym_name_bkup,
+                                                     arg_units)
+            except UnboundLocalError:
+                if len(rhs.args) > 0:
+                    try:
+                        split_rhs_args = str(rhs.args).split(',')[0]
+                        if ('(' in split_rhs_args) and (')' not in
+                                split_rhs_args):
+                            arg_units = {}
+                            units = ""
+                    except IndexError:
+                        pass
 
             meta = dict(units=units, arg_units=arg_units)
             func.meta = meta
@@ -766,6 +913,35 @@ class Kamodo(UserDict):
             self.register_symbol(symbol)
 
     def __getitem__(self, key):
+        """Given a symbol string, retrieves the corresponding function.
+
+        input: **key** - string or function symbol
+
+    
+        ** returns**: the associated function
+
+        ** usage **:
+
+        Rretrieval by function name:
+
+        ```python
+            kobj['f'] = 'x^2-x-1'
+            f = kobj['f']
+            f(3) # returns 5
+        ```
+
+        It is also possible to retreive by function symbol:
+
+        ```python
+            from kamodo import sympify
+            fsymbol = sympify('f') # converts str to symbol
+
+            kobj['f'] = 'x^2-x-1'
+            f = kobj[fsymbol]
+            f(3) # returns 5
+        ```
+
+        """
         try:
             return super(Kamodo, self).__getitem__(key)
         except KeyError:
@@ -784,6 +960,25 @@ class Kamodo(UserDict):
         return False
 
     def __getattr__(self, name):
+        """
+
+        Retrieves a given function as an attribute.
+        
+        **input** - **name** of function to retrieve
+
+        **returns** the associated function
+
+        Usage:
+
+        ```py
+        k = Kamodo(f='x^2-x-1')
+        k.f
+        ```
+        The above renders as follows in a jupyter notebook
+
+        $f{\\left(x \\right)} = x^{2} - x - 1$
+
+        """
         try:
             return self[name]
         except KeyError:
@@ -856,6 +1051,10 @@ class Kamodo(UserDict):
         units = self.signatures[key]['units']
         arg_units = get_arg_units(lhs, self.unit_registry)
 
+        for k, v in arg_units.items():
+            if str(v) == 'Dimension(1)':
+                arg_units[k] = ''
+
         if len(units) > 0:
             units = '{}'.format(get_abbrev(units))
         else:
@@ -884,10 +1083,12 @@ class Kamodo(UserDict):
                       fold_short_frac=True,
                       root_notation=False,
                       ))
+            dimension_less_args = lhs_str.find('[]')
+            if dimension_less_args != -1:
+                lhs_str = lhs_str.replace('[]', '')
 
         latex_eq = ''
         latex_eq_rhs = ''
-
         if isinstance(rhs, str):
             latex_eq_rhs = rhs
         elif hasattr(rhs, '__call__') | (rhs is None):
@@ -909,12 +1110,25 @@ class Kamodo(UserDict):
             repr_latex += r"$"
             repr_latex += "{} = {}".format(lhs_str, latex_eq_rhs)
             repr_latex += r"$"
-
         return repr_latex
 
     def to_latex(self, keys=None, mode='equation'):
         """Generate list of LaTeX-formated formulas
-        Upon registeration, each function should have a _repr_latex_ method.
+
+        ** inputs **:
+
+        * keys - (optional) list(str) of registered functions to generate LaTeX from
+
+        * mode - (optional) string determines to wrap formulas
+            * 'equation' (default) wraps formulas in `begin{equation} ... end{equation}`
+
+            * 'inline': wraps formulas in dollar signs
+
+        ** returns **: LaTeX-formated string
+
+        
+        Note: This function does not need to be for rendering in jupyter. See _repr_latex_ method.
+
         """
         if keys is None:
             keys = list(self.signatures.keys())
@@ -933,11 +1147,50 @@ class Kamodo(UserDict):
         return beautify_latex(repr_latex).encode('utf-8').decode()
 
     def _repr_latex_(self):
-        """Provide notebook rendering of formulas"""
+        """Provides notebook rendering of kamodo object's registered functions.
+
+        ** inputs ** - N/A
+
+        ** returns ** latex string - obtained  from `to_latex` method
+
+        Usage:
+
+        ```python
+        k = Kamodo(f='x^2-x-1')
+        k
+        ```
+
+        When placed on a line by itself, the above object will be rendered by jupyter notebooks like this:
+
+        \\begin{equation}f{\\left(x \\right)} = x^{2} - x - 1\\end{equation}
+
+        More on the _repr_latex_ method can be found [here](https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html) 
+        
+        Note: Registered functions are also equiped with their own `_repr_latex_` method.
+
+        """
         return self.to_latex()
 
     def detail(self):
-        """Constructs a pandas dataframe from signatures"""
+        """Constructs a pandas dataframe from signatures
+
+        ** inputs ** - N/A
+
+        ** returns ** - pandas dataframe
+
+        usage:
+
+        ```python
+        k = Kamodo('rho(x[cm])[g/cm^3]=x^2', g = 'x+y')
+        k.detail()
+        ```
+        outputs:
+
+
+        <table border="1" class="dataframe">  <thead>    <tr style="text-align: right;">      <th></th>      <th>symbol</th>      <th>units</th>      <th>lhs</th>      <th>rhs</th>      <th>arg_units</th>    </tr>  </thead>  <tbody>    <tr>      <th>rho</th>      <td>rho(x)</td>      <td>g/cm**3</td>      <td>rho(x)</td>      <td>x**2</td>      <td>{\'x\': \'cm\'}</td>    </tr>    <tr>      <th>g</th>      <td>g(x, y)</td>      <td></td>      <td>g</td>      <td>x + y</td>      <td>{}</td>    </tr>  </tbody></table>
+        """
+
+
         return pd.DataFrame(self.signatures).T
 
     def simulate(self, **kwargs):
@@ -951,8 +1204,31 @@ class Kamodo(UserDict):
         return simulate(OrderedDict(state_funcs), **kwargs)
 
     def evaluate(self, variable, *args, **kwargs):
-        """evaluates the variable
-        if the variable is not present, try to parse it as a semicolon-delimited list
+        """Evaluate a given function variable using kwargs.
+
+        If the variable is not present, try to parse it as an equation and evaluate the expression.
+
+        ** inputs **:
+
+        * variable - str:
+            * function string name to evaluate
+            * semicolon delmitted list of equations, the last of which will be evaluated
+        * args - not presently used
+        * kwargs - key-word arguments passed to function (required)
+
+        ** returns **: dictionary of input kwargs and output {variable: self.variable(**kwargs)}
+
+        ** usage **:
+        
+        ```py
+        k = Kamodo(f='x+y')
+
+        result = k.evaluate('f', x=3, y=4)['f']
+        assert k.f(3,4) == result
+        assert k.evaluate('g=f+3', x=3, y=4)['g'] == result+3
+        assert k.evaluate('g=f+3;h=g+2', x=3, y=4)['h'] == result+3+2
+        ```
+
         """
         if not hasattr(self, variable):
             var_dict = {}
@@ -1029,7 +1305,18 @@ class Kamodo(UserDict):
         return scope['solution']
 
     def figure(self, variable, indexing='ij', **kwargs):
-        """Generates a plotly figure for a given variable and keyword arguments"""
+        """Generates a plotly figure for a single variable and keyword arguments
+        
+        ** inputs **:
+
+        * variable: the name of a previously registered function
+        * kwargs: {arg: values} to pass to registered function
+        * indexing: determines order by which 2d matrices are given (affects contour_plot, carpet_plot, and plane)
+
+        ** returns **: plotly [figure](https://plotly.com/python/figure-structure/) (dict-like)
+
+        raises: SyntaxError if variable not found
+        """
         result = self.evaluate(variable, **kwargs)
         signature = self.signatures[variable]
         units = signature['units']
@@ -1144,6 +1431,36 @@ class Kamodo(UserDict):
         # return fig
 
     def plot(self, *variables, plot_partial={}, **figures):
+        """Generates a plotly figure from multiple variables and keyword arguments
+
+        ** inputs **:
+
+        * variable: the name of a previously registered function
+        * figures: dict {variable: {arg: values}} to pass to registered function
+        
+        ** returns **: plotly [figure](https://plotly.com/python/figure-structure/) (dict-like).
+        When run in a jupyter notebook, an inline plotly figure will be displayed.
+
+        ** raises **:
+
+        * TypeError when required function arguments are not specified
+        * KeyError when no plotting function can be associated with input/output shapes
+        
+        ** usage **:
+        
+        ```python
+        k = Kamodo(
+            f=lambda x=np.array([2,3,4]): x**2-x-1,
+            g='sin(x)')
+
+        k.plot('f') # plots f using default arguments for f
+
+        k.plot(f={x:[3,4,5]}, g={x{-2, 3, 4}}) # plots f at x=[3,4,5] and g at [-2,3,4]
+        ```
+
+        
+
+        """
         if len(plot_partial) > 0:
             kpartial = from_kamodo(self)  # copy kamodo object
             for k, v in plot_partial.items():
