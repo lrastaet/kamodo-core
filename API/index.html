@@ -399,6 +399,7 @@ automatic function composition and inserting unit conversions where appropriate.
 <p><strong> inputs </strong>:</p>
 <ul>
 <li>variable: the name of a previously registered function</li>
+<li>plot_partial: dict(dict) of {varname: {arg: values}} partial arguments to fix</li>
 <li>figures: dict {variable: {arg: values}} to pass to registered function</li>
 </ul>
 <p><strong> returns </strong>: plotly <a href="https://plotly.com/python/figure-structure/">figure</a> (dict-like).
@@ -416,7 +417,49 @@ When run in a jupyter notebook, an inline plotly figure will be displayed.</p>
 <span class="n">k</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)</span> <span class="c1"># plots f using default arguments for f</span>
 
 <span class="n">k</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]},</span> <span class="n">g</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">{</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}})</span> <span class="c1"># plots f at x=[3,4,5] and g at [-2,3,4]</span>
-</code></pre></div></div>
+</code></pre></div>
+
+<p>Use the <code>plot_partial</code> keyword to lower the dimensionality of a function by fixing some of its variables:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">kamodo</span> <span class="kn">import</span> <span class="n">kamodofy</span><span class="p">,</span> <span class="n">gridify</span><span class="p">,</span> <span class="n">Kamodo</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">RegularGridInterpolator</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># define sample coordinate and data arrays</span>
+<span class="n">t</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">ht</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">24.</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">360.</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">90.</span><span class="p">,</span><span class="mf">90.</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">100.</span><span class="p">,</span><span class="mf">10000.</span><span class="p">,</span><span class="mi">250</span><span class="p">)</span>
+
+<span class="n">variable</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2500000</span><span class="p">),</span> <span class="c1"># data</span>
+    <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">250</span><span class="p">))</span> <span class="c1"># match coordinate arrays</span>
+
+<span class="c1"># define and kamodofy interpolating function</span>
+<span class="n">rgi</span> <span class="o">=</span> <span class="n">RegularGridInterpolator</span><span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">ht</span><span class="p">),</span> <span class="n">variable</span><span class="p">,</span> <span class="n">bounds_error</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span>
+
+<span class="nd">@kamodofy</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;m/s&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">variable</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">interpolator</span><span class="p">(</span><span class="n">xvec</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rgi</span><span class="p">(</span><span class="n">xvec</span><span class="p">)</span>
+
+<span class="c1">#gridify same function</span>
+<span class="n">interpolator_grid</span> <span class="o">=</span> <span class="n">kamodofy</span><span class="p">(</span><span class="n">gridify</span><span class="p">(</span><span class="n">interpolator</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">t</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="o">=</span> <span class="n">lat</span><span class="p">,</span>  <span class="n">height</span> <span class="o">=</span> <span class="n">ht</span><span class="p">),</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;m/s&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">variable</span><span class="p">,</span> <span class="n">arg_units</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span><span class="s1">&#39;hr&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">:</span><span class="s1">&#39;deg&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">:</span><span class="s1">&#39;deg&#39;</span><span class="p">,</span><span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;km&#39;</span><span class="p">})</span>
+
+<span class="c1">#register in a new kamodo object</span>
+<span class="n">kamodo_object</span> <span class="o">=</span> <span class="n">Kamodo</span><span class="p">()</span>
+<span class="n">kamodo_object</span><span class="p">[</span><span class="s1">&#39;v&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">interpolator</span>
+<span class="n">kamodo_object</span><span class="p">[</span><span class="s1">&#39;v_ijkl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">interpolator_grid</span> <span class="c1"># 4 dimensional</span>
+<span class="n">kamodo_object</span>
+
+<span class="n">kamodo_object</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v_ijkl</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span><span class="mf">10.</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">:</span><span class="mf">90.</span><span class="p">})</span>
+</code></pre></div>
+
+<p>The above line raises an Error: not supported: out_dim ('N', 'M'), arg_dims [(1,), ('N',), (1,), ('M',)]</p>
+<p>Since there is no straight-foward way to plot a high-dimensional function, we can use <code>plot_partial</code> instead
+to get a lower-dimensional slice instead:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">kamodo_object</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;v_ijkl&#39;</span><span class="p">,</span> <span class="n">plot_partial</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;v_ijkl&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;lon&#39;</span><span class="p">:</span><span class="mf">10.</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">:</span><span class="mf">90.</span><span class="p">}})</span>
+</code></pre></div>
+
+<p>See also <a href="#partial">@partial</a> decorator to fix a function's arguments at registration time.</p></div>
 </div>
 </div>
 <h3 id="latex-rendering">LaTeX rendering<a class="headerlink" href="#latex-rendering" title="Permanent link">&para;</a></h3>
@@ -457,7 +500,8 @@ When run in a jupyter notebook, an inline plotly figure will be displayed.</p>
 </li>
 </ul>
 <p><strong> returns </strong>: LaTeX-formated string</p>
-<p>Note: This function does not need to be for rendering in jupyter. See <em>repr_latex</em> method.</p></div>
+<p>Note: This function does not need to be called directly for rendering in jupyter
+because the <em>repr_latex</em> method is automatically attached.</p></div>
 <div class="autodoc-signature"><code><strong>detail</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
 <div class="autodoc-docstring"><p>Constructs a pandas dataframe from signatures</p>
 <p><strong> inputs </strong> - N/A</p>
