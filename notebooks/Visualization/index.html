@@ -88,6 +88,10 @@
                     </li>
                 </ul>
                 <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../rpc/">RPC</a>
+                    </li>
+                </ul>
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../../API/">API</a>
                     </li>
                 </ul>
@@ -200,181 +204,154 @@
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped="scoped">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>plot_type</th>
-      <th>function</th>
-    </tr>
-    <tr>
-      <th>out_shape</th>
-      <th>arg_shapes</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+<code>kj/filesystem-disk-unix.c++:1690: warning: PWD environment variable doesn&#39;t match current directory; pwd = /Users/asherp/git/ensemblegovservices/kamodo-core
+</code>
+</pre>
+</div>
+</div>
+<div class="output_area">
+<table>
+<thead><tr>
+<th style="text-align:left"><br><br>out_shape, arg_shapes</th>
+<th style="text-align:left">plot_type<br><br>&nbsp;</th>
+<th style="text-align:left">function<br><br>&nbsp;</th>
+</tr>
+</thead>
 <tbody>
-    <tr>
-      <th>(1,)</th>
-      <th>((N, M), (N, M), (N, M))</th>
-      <td>3d-parametric</td>
-      <td>kamodo.plotting.surface</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">(N,)</th>
-      <th>((N,),)</th>
-      <td>1d-line</td>
-      <td>kamodo.plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N,), (N,))</th>
-      <td>2d-line-scalar</td>
-      <td>kamodo.plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N,), (N,), (N,))</th>
-      <td>3d-line-scalar</td>
-      <td>kamodo.plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N, 3),)</th>
-      <td>3d scatter</td>
-      <td>kamodo.plotting.scatter_plot</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">(N, 2)</th>
-      <th>((N,),)</th>
-      <td>2d-line</td>
-      <td>kamodo.plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N, 2),)</th>
-      <td>2d-vector</td>
-      <td>kamodo.plotting.vector_plot</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">(N, 3)</th>
-      <th>((N,),)</th>
-      <td>3d-line</td>
-      <td>kamodo.plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N, 3),)</th>
-      <td>3d-vector</td>
-      <td>kamodo.plotting.vector_plot</td>
-    </tr>
-    <tr>
-      <th>((M,), (M,), (M,))</th>
-      <td>3d-tri-surface</td>
-      <td>kamodo.plotting.tri_surface_plot</td>
-    </tr>
-    <tr>
-      <th>(N, N)</th>
-      <th>((N,), (N,))</th>
-      <td>2d-contour</td>
-      <td>kamodo.plotting.contour_plot</td>
-    </tr>
-    <tr>
-      <th rowspan="7" valign="top">(N, M)</th>
-      <th>((N,), (M,))</th>
-      <td>2d-contour</td>
-      <td>kamodo.plotting.contour_plot</td>
-    </tr>
-    <tr>
-      <th>((M,), (N,))</th>
-      <td>2d-contour</td>
-      <td>kamodo.plotting.contour_plot</td>
-    </tr>
-    <tr>
-      <th>((N, M), (N, M))</th>
-      <td>2d-contour-skew</td>
-      <td>kamodo.plotting.contour_plot</td>
-    </tr>
-    <tr>
-      <th>((N, M), (N, M), (N, M))</th>
-      <td>3d-parametric-scalar</td>
-      <td>kamodo.plotting.surface</td>
-    </tr>
-    <tr>
-      <th>((1,), (N, M), (N, M))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((N, M), (1,), (N, M))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((N, M), (N, M), (1,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">(N, 1, M)</th>
-      <th>((N,), (1,), (M,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((1,), (N,), (M,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>(1, N, M)</th>
-      <th>((N,), (1,), (M,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">(N, M, 1)</th>
-      <th>((1,), (N,), (M,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((N,), (1,), (M,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((N,), (M,), (1,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((M,), (N,), (1,))</th>
-      <td>3d-plane</td>
-      <td>kamodo.plotting.plane</td>
-    </tr>
-    <tr>
-      <th>(N, M, 3)</th>
-      <th>((N,), (M,))</th>
-      <td>image</td>
-      <td>kamodo.plotting.image</td>
-    </tr>
-  </tbody>
+<tr>
+<td style="text-align:left">((1,), (('N', 'M'), ('N', 'M'), ('N', 'M')))</td>
+<td style="text-align:left">3d-parametric</td>
+<td style="text-align:left">kamodo.plotting.surface</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N',), (('N',),))</td>
+<td style="text-align:left">1d-line</td>
+<td style="text-align:left">kamodo.plotting.line_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N',), (('N',), ('N',)))</td>
+<td style="text-align:left">2d-line-scalar</td>
+<td style="text-align:left">kamodo.plotting.line_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N',), (('N',), ('N',), ('N',)))</td>
+<td style="text-align:left">3d-line-scalar</td>
+<td style="text-align:left">kamodo.plotting.line_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N',), (('N', 3),))</td>
+<td style="text-align:left">3d scatter</td>
+<td style="text-align:left">kamodo.plotting.scatter_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 2), (('N',),))</td>
+<td style="text-align:left">2d-line</td>
+<td style="text-align:left">kamodo.plotting.line_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 2), (('N', 2),))</td>
+<td style="text-align:left">2d-vector</td>
+<td style="text-align:left">kamodo.plotting.vector_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 3), (('N',),))</td>
+<td style="text-align:left">3d-line</td>
+<td style="text-align:left">kamodo.plotting.line_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 3), (('N', 3),))</td>
+<td style="text-align:left">3d-vector</td>
+<td style="text-align:left">kamodo.plotting.vector_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 3), (('M',), ('M',), ('M',)))</td>
+<td style="text-align:left">3d-tri-surface</td>
+<td style="text-align:left">kamodo.plotting.tri_surface_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'N'), (('N',), ('N',)))</td>
+<td style="text-align:left">2d-contour</td>
+<td style="text-align:left">kamodo.plotting.contour_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), (('N',), ('M',)))</td>
+<td style="text-align:left">2d-contour</td>
+<td style="text-align:left">kamodo.plotting.contour_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), (('M',), ('N',)))</td>
+<td style="text-align:left">2d-contour</td>
+<td style="text-align:left">kamodo.plotting.contour_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), (('N', 'M'), ('N', 'M')))</td>
+<td style="text-align:left">2d-contour-skew</td>
+<td style="text-align:left">kamodo.plotting.contour_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), (('N', 'M'), ('N', 'M'), ('N', 'M')))</td>
+<td style="text-align:left">3d-parametric-scalar</td>
+<td style="text-align:left">kamodo.plotting.surface</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), ((1,), ('N', 'M'), ('N', 'M')))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">kamodo.plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), (('N', 'M'), (1,), ('N', 'M')))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">kamodo.plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), (('N', 'M'), ('N', 'M'), (1,)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">kamodo.plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 1, 'M'), (('N',), (1,), ('M',)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">kamodo.plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 1, 'M'), ((1,), ('N',), ('M',)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">kamodo.plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">((1, 'N', 'M'), (('N',), (1,), ('M',)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">kamodo.plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M', 1), ((1,), ('N',), ('M',)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">kamodo.plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M', 1), (('N',), (1,), ('M',)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">kamodo.plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M', 1), (('N',), ('M',), (1,)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">kamodo.plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M', 1), (('M',), ('N',), (1,)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">kamodo.plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M', 3), (('N',), ('M',)))</td>
+<td style="text-align:left">image</td>
+<td style="text-align:left">kamodo.plotting.image</td>
+</tr>
+</tbody>
 </table>
-</div>
-</div>
 </div>
 </div>
 </div>

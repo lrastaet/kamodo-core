@@ -80,6 +80,10 @@
                     </li>
                 </ul>
                 <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../rpc/">RPC</a>
+                    </li>
+                </ul>
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../../API/">API</a>
                     </li>
                 </ul>
@@ -180,6 +184,18 @@
 
 
 
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+<code>kj/filesystem-disk-unix.c++:1690: warning: PWD environment variable doesn&#39;t match current directory; pwd = /Users/asherp/git/ensemblegovservices/kamodo-core
+</code>
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -540,61 +556,43 @@ _lambdifygenerated(y)
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped="scoped">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>symbol</th>
-      <th>units</th>
-      <th>lhs</th>
-      <th>rhs</th>
-      <th>arg_units</th>
-    </tr>
-  </thead>
+<table>
+<thead><tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">symbol</th>
+<th style="text-align:left">units</th>
+<th style="text-align:left">lhs</th>
+<th style="text-align:left">rhs</th>
+<th style="text-align:left">arg_units</th>
+</tr>
+</thead>
 <tbody>
-    <tr>
-      <th>mass</th>
-      <td>mass(x)</td>
-      <td>kg</td>
-      <td>mass</td>
-      <td>x</td>
-      <td>{}</td>
-    </tr>
-    <tr>
-      <th>vol</th>
-      <td>vol(y)</td>
-      <td>m**3</td>
-      <td>vol</td>
-      <td>y</td>
-      <td>{}</td>
-    </tr>
-    <tr>
-      <th>rho</th>
-      <td>rho(x, y)</td>
-      <td>g/cm**3</td>
-      <td>rho(x, y)</td>
-      <td>mass(x)/(1000*vol(y))</td>
-      <td>{'x': 'cm**(-3)', 'y': 'g'}</td>
-    </tr>
-  </tbody>
+<tr>
+<td style="text-align:left">mass</td>
+<td style="text-align:left">mass(x)</td>
+<td style="text-align:left">kg</td>
+<td style="text-align:left">mass</td>
+<td style="text-align:left">x</td>
+<td style="text-align:left">{}</td>
+</tr>
+<tr>
+<td style="text-align:left">vol</td>
+<td style="text-align:left">vol(y)</td>
+<td style="text-align:left">m**3</td>
+<td style="text-align:left">vol</td>
+<td style="text-align:left">y</td>
+<td style="text-align:left">{}</td>
+</tr>
+<tr>
+<td style="text-align:left">rho</td>
+<td style="text-align:left">rho(x, y)</td>
+<td style="text-align:left">g/cm**3</td>
+<td style="text-align:left">rho(x, y)</td>
+<td style="text-align:left">mass(x)/(1000*vol(y))</td>
+<td style="text-align:left">{'x': 'cm**(-3)', 'y': 'g'}</td>
+</tr>
+</tbody>
 </table>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -915,53 +913,35 @@ rho(x=array([3, 4, 5]), y=array([1, 2, 3]))
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped="scoped">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>symbol</th>
-      <th>units</th>
-      <th>lhs</th>
-      <th>rhs</th>
-      <th>arg_units</th>
-    </tr>
-  </thead>
+<table>
+<thead><tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">symbol</th>
+<th style="text-align:left">units</th>
+<th style="text-align:left">lhs</th>
+<th style="text-align:left">rhs</th>
+<th style="text-align:left">arg_units</th>
+</tr>
+</thead>
 <tbody>
-    <tr>
-      <th>rho</th>
-      <td>rho(x, y)</td>
-      <td>kg/m**3</td>
-      <td>rho</td>
-      <td>xy</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>den</th>
-      <td>den(x, y)</td>
-      <td>g/cm**3</td>
-      <td>den</td>
-      <td>rho(x, y)/1000</td>
-      <td>{}</td>
-    </tr>
-  </tbody>
+<tr>
+<td style="text-align:left">rho</td>
+<td style="text-align:left">rho(x, y)</td>
+<td style="text-align:left">kg/m**3</td>
+<td style="text-align:left">rho</td>
+<td style="text-align:left">xy</td>
+<td style="text-align:left">None</td>
+</tr>
+<tr>
+<td style="text-align:left">den</td>
+<td style="text-align:left">den(x, y)</td>
+<td style="text-align:left">g/cm**3</td>
+<td style="text-align:left">den</td>
+<td style="text-align:left">rho(x, y)/1000</td>
+<td style="text-align:left">{}</td>
+</tr>
+</tbody>
 </table>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -988,181 +968,146 @@ rho(x=array([3, 4, 5]), y=array([1, 2, 3]))
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped="scoped">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>plot_type</th>
-      <th>function</th>
-    </tr>
-    <tr>
-      <th>out_shape</th>
-      <th>arg_shapes</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<table>
+<thead><tr>
+<th style="text-align:left"><br><br>out_shape, arg_shapes</th>
+<th style="text-align:left">plot_type<br><br>&nbsp;</th>
+<th style="text-align:left">function<br><br>&nbsp;</th>
+</tr>
+</thead>
 <tbody>
-    <tr>
-      <th>(1,)</th>
-      <th>((N, M), (N, M), (N, M))</th>
-      <td>3d-parametric</td>
-      <td>plotting.surface</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">(N,)</th>
-      <th>((N,),)</th>
-      <td>1d-line</td>
-      <td>plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N,), (N,))</th>
-      <td>2d-line-scalar</td>
-      <td>plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N,), (N,), (N,))</th>
-      <td>3d-line-scalar</td>
-      <td>plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N, 3),)</th>
-      <td>3d scatter</td>
-      <td>plotting.scatter_plot</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">(N, 2)</th>
-      <th>((N,),)</th>
-      <td>2d-line</td>
-      <td>plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N, 2),)</th>
-      <td>2d-vector</td>
-      <td>plotting.vector_plot</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">(N, 3)</th>
-      <th>((N,),)</th>
-      <td>3d-line</td>
-      <td>plotting.line_plot</td>
-    </tr>
-    <tr>
-      <th>((N, 3),)</th>
-      <td>3d-vector</td>
-      <td>plotting.vector_plot</td>
-    </tr>
-    <tr>
-      <th>((M,), (M,), (M,))</th>
-      <td>3d-tri-surface</td>
-      <td>plotting.tri_surface_plot</td>
-    </tr>
-    <tr>
-      <th>(N, N)</th>
-      <th>((N,), (N,))</th>
-      <td>2d-contour</td>
-      <td>plotting.contour_plot</td>
-    </tr>
-    <tr>
-      <th rowspan="7" valign="top">(N, M)</th>
-      <th>((N,), (M,))</th>
-      <td>2d-contour</td>
-      <td>plotting.contour_plot</td>
-    </tr>
-    <tr>
-      <th>((M,), (N,))</th>
-      <td>2d-contour</td>
-      <td>plotting.contour_plot</td>
-    </tr>
-    <tr>
-      <th>((N, M), (N, M))</th>
-      <td>2d-contour-skew</td>
-      <td>plotting.contour_plot</td>
-    </tr>
-    <tr>
-      <th>((N, M), (N, M), (N, M))</th>
-      <td>3d-parametric-scalar</td>
-      <td>plotting.surface</td>
-    </tr>
-    <tr>
-      <th>((1,), (N, M), (N, M))</th>
-      <td>3d-plane</td>
-      <td>plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((N, M), (1,), (N, M))</th>
-      <td>3d-plane</td>
-      <td>plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((N, M), (N, M), (1,))</th>
-      <td>3d-plane</td>
-      <td>plotting.plane</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">(N, 1, M)</th>
-      <th>((N,), (1,), (M,))</th>
-      <td>3d-plane</td>
-      <td>plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((1,), (N,), (M,))</th>
-      <td>3d-plane</td>
-      <td>plotting.plane</td>
-    </tr>
-    <tr>
-      <th>(1, N, M)</th>
-      <th>((N,), (1,), (M,))</th>
-      <td>3d-plane</td>
-      <td>plotting.plane</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">(N, M, 1)</th>
-      <th>((1,), (N,), (M,))</th>
-      <td>3d-plane</td>
-      <td>plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((N,), (1,), (M,))</th>
-      <td>3d-plane</td>
-      <td>plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((N,), (M,), (1,))</th>
-      <td>3d-plane</td>
-      <td>plotting.plane</td>
-    </tr>
-    <tr>
-      <th>((M,), (N,), (1,))</th>
-      <td>3d-plane</td>
-      <td>plotting.plane</td>
-    </tr>
-    <tr>
-      <th>(N, M, 3)</th>
-      <th>((N,), (M,))</th>
-      <td>image</td>
-      <td>plotting.image</td>
-    </tr>
-  </tbody>
+<tr>
+<td style="text-align:left">((1,), (('N', 'M'), ('N', 'M'), ('N', 'M')))</td>
+<td style="text-align:left">3d-parametric</td>
+<td style="text-align:left">plotting.surface</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N',), (('N',),))</td>
+<td style="text-align:left">1d-line</td>
+<td style="text-align:left">plotting.line_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N',), (('N',), ('N',)))</td>
+<td style="text-align:left">2d-line-scalar</td>
+<td style="text-align:left">plotting.line_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N',), (('N',), ('N',), ('N',)))</td>
+<td style="text-align:left">3d-line-scalar</td>
+<td style="text-align:left">plotting.line_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N',), (('N', 3),))</td>
+<td style="text-align:left">3d scatter</td>
+<td style="text-align:left">plotting.scatter_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 2), (('N',),))</td>
+<td style="text-align:left">2d-line</td>
+<td style="text-align:left">plotting.line_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 2), (('N', 2),))</td>
+<td style="text-align:left">2d-vector</td>
+<td style="text-align:left">plotting.vector_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 3), (('N',),))</td>
+<td style="text-align:left">3d-line</td>
+<td style="text-align:left">plotting.line_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 3), (('N', 3),))</td>
+<td style="text-align:left">3d-vector</td>
+<td style="text-align:left">plotting.vector_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 3), (('M',), ('M',), ('M',)))</td>
+<td style="text-align:left">3d-tri-surface</td>
+<td style="text-align:left">plotting.tri_surface_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'N'), (('N',), ('N',)))</td>
+<td style="text-align:left">2d-contour</td>
+<td style="text-align:left">plotting.contour_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), (('N',), ('M',)))</td>
+<td style="text-align:left">2d-contour</td>
+<td style="text-align:left">plotting.contour_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), (('M',), ('N',)))</td>
+<td style="text-align:left">2d-contour</td>
+<td style="text-align:left">plotting.contour_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), (('N', 'M'), ('N', 'M')))</td>
+<td style="text-align:left">2d-contour-skew</td>
+<td style="text-align:left">plotting.contour_plot</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), (('N', 'M'), ('N', 'M'), ('N', 'M')))</td>
+<td style="text-align:left">3d-parametric-scalar</td>
+<td style="text-align:left">plotting.surface</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), ((1,), ('N', 'M'), ('N', 'M')))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), (('N', 'M'), (1,), ('N', 'M')))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M'), (('N', 'M'), ('N', 'M'), (1,)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 1, 'M'), (('N',), (1,), ('M',)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 1, 'M'), ((1,), ('N',), ('M',)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">((1, 'N', 'M'), (('N',), (1,), ('M',)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M', 1), ((1,), ('N',), ('M',)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M', 1), (('N',), (1,), ('M',)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M', 1), (('N',), ('M',), (1,)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M', 1), (('M',), ('N',), (1,)))</td>
+<td style="text-align:left">3d-plane</td>
+<td style="text-align:left">plotting.plane</td>
+</tr>
+<tr>
+<td style="text-align:left">(('N', 'M', 3), (('N',), ('M',)))</td>
+<td style="text-align:left">image</td>
+<td style="text-align:left">plotting.image</td>
+</tr>
+</tbody>
 </table>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -1410,7 +1355,7 @@ require(['plotly'], function(Plotly) {
 <div class="output_area">
 <div class="output_text output_subarea output_execute_result">
 <pre>
-<code>&lt;generator object simulate at 0x7fee1e561bd0&gt;</code>
+<code>&lt;generator object simulate at 0x7ffbada5a650&gt;</code>
 </pre>
 </div>
 </div>
@@ -1438,64 +1383,46 @@ require(['plotly'], function(Plotly) {
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped="scoped">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>y_i</th>
-      <th>x_i</th>
-    </tr>
-  </thead>
+<table>
+<thead><tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">y_i</th>
+<th style="text-align:right">x_i</th>
+</tr>
+</thead>
 <tbody>
-    <tr>
-      <th>0</th>
-      <td>NaN</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.0</td>
-      <td>-1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.0</td>
-      <td>-2</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>-1.0</td>
-      <td>-3</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>-2.0</td>
-      <td>-4</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>-3.0</td>
-      <td>-5</td>
-    </tr>
-  </tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">nan</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">-1</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">-2</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">-1</td>
+<td style="text-align:right">-3</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">-2</td>
+<td style="text-align:right">-4</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">-3</td>
+<td style="text-align:right">-5</td>
+</tr>
+</tbody>
 </table>
-</div>
-</div>
 </div>
 </div>
 </div>

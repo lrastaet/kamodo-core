@@ -94,6 +94,10 @@
                     </li>
                 </ul>
                 <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../rpc/">RPC</a>
+                    </li>
+                </ul>
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../../API/">API</a>
                     </li>
                 </ul>
@@ -232,6 +236,18 @@
 
 
 
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+<code>kj/filesystem-disk-unix.c++:1690: warning: PWD environment variable doesn&#39;t match current directory; pwd = /Users/asherp/git/ensemblegovservices/kamodo-core
+</code>
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -770,69 +786,51 @@
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped="scoped">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>symbol</th>
-      <th>units</th>
-      <th>lhs</th>
-      <th>rhs</th>
-      <th>arg_units</th>
-    </tr>
-  </thead>
+<table>
+<thead><tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">symbol</th>
+<th style="text-align:left">units</th>
+<th style="text-align:left">lhs</th>
+<th style="text-align:left">rhs</th>
+<th style="text-align:left">arg_units</th>
+</tr>
+</thead>
 <tbody>
-    <tr>
-      <th>rho</th>
-      <td>rho(xvec)</td>
-      <td>kg/m**3</td>
-      <td>rho</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>rho_ijk</th>
-      <td>rho_ijk(x_i, y_j, z_k)</td>
-      <td>kg/m**3</td>
-      <td>rho_ijk</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>P</th>
-      <td>P(xvec)</td>
-      <td>nPa</td>
-      <td>P</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>P_ijk</th>
-      <td>P_ijk(x_i, y_j, z_k)</td>
-      <td>nPa</td>
-      <td>P_ijk</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-  </tbody>
+<tr>
+<td style="text-align:left">rho</td>
+<td style="text-align:left">rho(xvec)</td>
+<td style="text-align:left">kg/m**3</td>
+<td style="text-align:left">rho</td>
+<td style="text-align:left">lambda(xvec)</td>
+<td style="text-align:left">None</td>
+</tr>
+<tr>
+<td style="text-align:left">rho_ijk</td>
+<td style="text-align:left">rho_ijk(x_i, y_j, z_k)</td>
+<td style="text-align:left">kg/m**3</td>
+<td style="text-align:left">rho_ijk</td>
+<td style="text-align:left">lambda(x_i, y_j, z_k)</td>
+<td style="text-align:left">None</td>
+</tr>
+<tr>
+<td style="text-align:left">P</td>
+<td style="text-align:left">P(xvec)</td>
+<td style="text-align:left">nPa</td>
+<td style="text-align:left">P</td>
+<td style="text-align:left">lambda(xvec)</td>
+<td style="text-align:left">None</td>
+</tr>
+<tr>
+<td style="text-align:left">P_ijk</td>
+<td style="text-align:left">P_ijk(x_i, y_j, z_k)</td>
+<td style="text-align:left">nPa</td>
+<td style="text-align:left">P_ijk</td>
+<td style="text-align:left">lambda(x_i, y_j, z_k)</td>
+<td style="text-align:left">None</td>
+</tr>
+</tbody>
 </table>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -997,61 +995,43 @@
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped="scoped">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>symbol</th>
-      <th>units</th>
-      <th>lhs</th>
-      <th>rhs</th>
-      <th>arg_units</th>
-    </tr>
-  </thead>
+<table>
+<thead><tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">symbol</th>
+<th style="text-align:left">units</th>
+<th style="text-align:left">lhs</th>
+<th style="text-align:left">rhs</th>
+<th style="text-align:left">arg_units</th>
+</tr>
+</thead>
 <tbody>
-    <tr>
-      <th>rho</th>
-      <td>rho(xvec)</td>
-      <td>kg/m**3</td>
-      <td>rho</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>vol</th>
-      <td>vol(xvec)</td>
-      <td>m**3</td>
-      <td>vol</td>
-      <td>4*pi*xvec**(3/2)/3</td>
-      <td>{}</td>
-    </tr>
-    <tr>
-      <th>mass</th>
-      <td>mass(xvec)</td>
-      <td>kg</td>
-      <td>mass</td>
-      <td>rho(xvec)*vol(xvec)</td>
-      <td>{}</td>
-    </tr>
-  </tbody>
+<tr>
+<td style="text-align:left">rho</td>
+<td style="text-align:left">rho(xvec)</td>
+<td style="text-align:left">kg/m**3</td>
+<td style="text-align:left">rho</td>
+<td style="text-align:left">lambda(xvec)</td>
+<td style="text-align:left">None</td>
+</tr>
+<tr>
+<td style="text-align:left">vol</td>
+<td style="text-align:left">vol(xvec)</td>
+<td style="text-align:left">m**3</td>
+<td style="text-align:left">vol</td>
+<td style="text-align:left">4<em>pi</em>xvec**(3/2)/3</td>
+<td style="text-align:left">{}</td>
+</tr>
+<tr>
+<td style="text-align:left">mass</td>
+<td style="text-align:left">mass(xvec)</td>
+<td style="text-align:left">kg</td>
+<td style="text-align:left">mass</td>
+<td style="text-align:left">rho(xvec)*vol(xvec)</td>
+<td style="text-align:left">{}</td>
+</tr>
+</tbody>
 </table>
-</div>
-</div>
 </div>
 </div>
 </div>
