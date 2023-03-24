@@ -55,11 +55,10 @@ def get_unit_quantity(name, base, scale_factor, abbrev=None, unit_system='SI'):
 
 
 unit_subs = dict(
-    nT=get_unit_quantity('nanotesla', 'tesla', .000000001, 'nT', 'SI'),
     R_E=get_unit_quantity('earth radii', 'm', 6.371e6, 'R_E', 'SI'),
     R_S=get_unit_quantity('solar radii', 'm', 6.957e8, 'R_S', 'SI'),
     erg=get_unit_quantity('erg', 'J', .0000001, 'erg', 'SI'),
-    nPa=get_unit_quantity('nanopascals', 'pascal', .000000001, 'nPa', 'SI'),
+    dyne=get_unit_quantity('dyne', 'N', .0000001, 'dyne', 'SI'),
     cc=sympy_units.cm ** 3,
     AU=get_unit_quantity('astronomical unit', 'm', 1.496e+11, 'AU', 'SI'),
     arcsec=get_unit_quantity('arc seconds', 'degrees', 1. / 3600, '\"', 'SI'),
